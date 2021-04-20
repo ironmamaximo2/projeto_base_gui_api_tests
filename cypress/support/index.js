@@ -1,17 +1,9 @@
 //commands API
-
-//import './API/commands_API'
+import './API/commands_api'
 
 
 //commands GUI
 import './GUI/commands_gui'
-
-
-//commands BD
-//import './BD/commands_bd'
-
-//commands Condições
-//import './CONDITION/commands_condition'
 
 
 

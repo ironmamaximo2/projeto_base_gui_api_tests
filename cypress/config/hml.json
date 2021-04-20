@@ -2,12 +2,11 @@
     "projectId": "projeto_base",
     "env": {
         "url": "https://sorry-cypress-demo.herokuapp.com/",
-        "url_api": "url_api_hml",
-        "dado_login": "",
-        "senha": "123456",
+        "url_api": "https://serverest.dev/",
+        "email": "Uriwagner2@bol.com.br",
+        "password": "5633",
         "senha_incorreta": "12345",
         "nome_logado": "Usuario Medico",
-        "email": "livia_pro_prontuario@hotmail.com",
         "senha_email":"qatest@123",
         "db": {
             "user": "",
