@@ -19,6 +19,10 @@ describe('create users api', () => {
         .then((resp) => {
           expect(resp).property('status').to.equal(201)
           expect(resp).property('statusText').to.equal('Created')
+          expect(response.status).to.eq(200)
+          //expect(response.body).to.have.length(500)
+          //expect(response).to.have.property('message')
+          //expect(response).to.have.property('duration')
         })
     })
   })
