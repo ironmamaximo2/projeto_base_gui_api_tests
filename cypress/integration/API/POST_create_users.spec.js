@@ -19,10 +19,13 @@ describe('create users api', () => {
         .then((resp) => {
           expect(resp).property('status').to.equal(201)
           expect(resp).property('statusText').to.equal('Created')
-          expect(response.status).to.eq(200)
-          //expect(response.body).to.have.length(500)
-          //expect(response).to.have.property('message')
-          //expect(response).to.have.property('duration')
+          expect(resp.body).to.have.property('message');
+          expect(resp.body).to.have.property('_id');
+          expect(resp.body).property('message').to.be.a('string');
+          expect(resp.body).to.contain({
+            "message":"Cadastro realizado com sucesso"
+  
+          })
         })
     })
   })
