@@ -29,6 +29,9 @@ docker-compose -f ./docker-compose.minio.yml up
 
 Editar o arquivo /etc/hosts, acrescentando: 127.0.0.1 storage (abrir e acrescentar linha)
 
+Link útil para botar SorryCypress em pé localmente:
+https://www.linkedin.com/pulse/sorry-cypress-rodando-localmente-em-7-passos-marcio-denis-aguiar/?trackingId=QDCprcVqR1CVJ1%2Bhc2Kj1w%3D%3D
+
 
 #Rodar os testes
 -Abrir o Cypress. No terminal, diretório raiz do projeto rodar:
@@ -44,7 +47,7 @@ Após a execução dos testes, em modo headless vc poderá conferir as evidênci
 
 https://sorry-cypress-demo.herokuapp.com/projeto_base/runs
 
-ou 
+ou (no caso do sorry-cypress estar rodando localmente)
 
 http://127.0.0.1:8080/projeto_base/runs
 
