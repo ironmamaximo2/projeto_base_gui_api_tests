@@ -1,0 +1,98 @@
+pipeline {
+    agent { node { label 'linux && node14' }}
+
+    environment {
+        PROJECT_NAME="projeto_base_gui_api_tests"
+        SLACK_CHANNEL = "alertas-projeto_base_gui_api_tests"
+        CYPRESS_CACHE_FOLDER ="/home/jenkins/.cache/Cypress"
+        //CYPRESS_RUN_BINARY="~/Downloads/Cypress/Cypress cypress run"
+        DOCKER_USER_PASS = credentials('DOCKER_USER_PASS')
+        DOCKER_REPOSITORY = credentials('DOCKER_REPOSITORY')
+        DOCKER_USER_LOGIN = credentials('DOCKER_USER_LOGIN')
+    }
+
+    
+    options {
+        timeout(time: 80, unit: 'MINUTES')
+    }
+
+    stages {
+
+    stage('Notifica início') {
+         steps {
+         slackSend(color: '#87CEFA', message: "Starting build  ${env.BUILD_URL}", channel: "#${env.SLACK_CHANNEL}")
+            }
+        }
+
+   stage('Get env') {
+      steps {
+        parallel(
+          'Set environment': {
+            script {
+              env.PREVIOUS = env.BUILD_NUMBER - 1
+              env.DOCKER_BUILD_TAG = "$DOCKER_REPOSITORY/$PROJECT_NAME"
+            }
+          },
+
+          'Login at docker': {
+            sh '''
+              set +x
+              docker login $DOCKER_REPOSITORY -u $DOCKER_USER_LOGIN -p $DOCKER_USER_PASS
+              set -x
+            '''
+          },
+        )
+      }
+    }
+
+    stage('Get cache') {
+      steps {
+        sh '''
+          docker pull $DOCKER_PREVIUS_BUILD_TAG || echo "Docker pull fail"
+        '''
+      }
+    }
+
+    stage('Build') {
+      steps {
+        sh """
+          docker build -t $DOCKER_BUILD_TAG . -f Dockerfile
+        """
+      }
+    }
+
+    stage('Upload') {
+      steps {
+        sh '''docker push $DOCKER_BUILD_TAG'''
+      }
+    }
+
+    stage('Run tests E2E') {
+      steps {
+        echo 'rodar os teste de UI'
+         sh """
+           docker run --rm --network host \
+           -i $DOCKER_BUILD_TAG \
+           npm run smoke_test_exames
+         """
+      }
+    }
+     stage('Notifies termination') {
+        steps {
+               slackSend(color: '#87CEFA', message: "End of build  ${env.BUILD_URL}", channel: "#${env.SLACK_CHANNEL}")
+        }
+    }
+    }
+
+     post {
+       // only triggered when blue or green sign
+       success {
+           slackSend(color: '#32CD32', message: "Success in QA test execution  ${env.BUILD_URL}", channel: "#${env.SLACK_CHANNEL}")
+       }
+       // triggered when red sign
+       failure {
+            slackSend(color: '#FF0000', message: "Failure in QA test execution  ${env.BUILD_URL}", channel: "#${env.SLACK_CHANNEL}")
+       }
+    }
+
+}

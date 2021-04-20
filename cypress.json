@@ -1,0 +1,35 @@
+{
+  "projectId": "projeto_base",
+  "execTimeout": 100000,
+  "userAgent": null,
+  "retries": {
+    "runMode": 0,
+    "openMode": 0
+  },
+  "defaultCommandTimeout": 12000,
+  "pageLoadTimeout": 900000,
+  "viewportWidth": 1200,
+  "requestTimeout": 120000,
+  "viewportHeight": 860,
+  "responseTimeout": 600000,
+  "videoCompression": 15,
+
+  "reporter": "cypress-multi-reporters",
+  "reporterOptions": {
+    "reportDir": "cypress/reports",
+    "reportFilename": "Relatório-Testes - <Seu Projeto>",
+    "reportName": "Relatório",
+    "reportTitle": "Relatório de Testes - <Seu Projeto>",
+    "reportPageTitle": "Título da Página",
+    "takePassedScreenshot": false,
+    "clearOldScreenshots": false,
+    "shortScrFileNames": false,
+    "inline": true,
+    "charts": true,
+    "autoOpen": true,
+    "jsonReport": true,
+    "multiReport": true,
+    "timestamp": "dd-mm-yyyy_hh-mm-ss",
+    "capture": "runner"
+  }
+}

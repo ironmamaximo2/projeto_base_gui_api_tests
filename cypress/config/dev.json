@@ -1,0 +1,13 @@
+{
+    "env": {
+        "url": "<url_de_dev>",
+        "url_api": "<url_api_dev>",
+        "db": {
+            "user": "",
+            "password": "",
+            "host": "",
+            "port": "",
+            "database": ""
+          }
+    }
+}

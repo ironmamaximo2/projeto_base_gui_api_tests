@@ -1,0 +1,30 @@
+# Shared between .npmignore and .gitignore
+
+node_modules
+.DS_Store
+cypress.env.json
+results.json
+package-lock.json
+quality_assurance/features/shared_libs/node_modules
+quality_assurance/features/shared_libs/package-lock.json
+report/
+*.html
+cypress/videos
+cypress/reports
+cypress/screenshots
+Rel_Compl.json
+xunit.xml
+xunit.xml
+
+# Build artifacts
+
+built/
+spec/built/
+node_modules/
+website/bower_components/
+website/build/
+website/docgen/build/
+screenshots/
+results.json/
+cucumber_report.html/
+cypress/reports
