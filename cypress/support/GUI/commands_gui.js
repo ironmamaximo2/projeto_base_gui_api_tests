@@ -26,12 +26,20 @@ Cypress.Commands.add('val_men_suc_criacao_projeto', { timeout: 7000 }, () => {
     .should('be.visible')
 })
 
+Cypress.Commands.add('val_men_erro_criacao_projeto', { timeout: 7000 }, () => {
+  cy.get('form div path').should('be.visible')
+  cy.get(sorryElementsN.mensAlert)
+    .contains('Error: Duplicate projectId')
+    .should('be.visible')
+})
+
 
 
 Cypress.Commands.add('editar_projeto', { timeout: 7000 }, (nome,timeout) => {
   cy.get(sorryElementsN.lkAllProjects).contains('All Projects').should('be.visible').click()
   cy.get(sorryElementsN.cpEnterProjectId).should('be.visible').type(nome)
-  cy.get('a[href="/'+nome+'/edit"]').should('be.visible').click()
+  cy.get(sorryElementsN.icDelete).eq(0).should('be.visible')
+  cy.get('a[href="/'+nome+'/edit"]').should('be.visible').click({force:true})
   cy.get(sorryElementsN.cpInactivityTimeout).should('be.visible').clear().type(timeout);
   cy.get(sorryElementsN.btCreateProjectSave).should('be.visible').click()
   
@@ -49,7 +57,7 @@ Cypress.Commands.add('excluir_projeto', { timeout: 7000 }, (nome) => {
   cy.get(sorryElementsN.opAutoRefresh).should('be.visible').click()
   cy.get(sorryElementsN.cpEnterProjectId).should('be.visible').type(nome)
   cy.get('a[href="/'+nome+'/runs"]').contains(nome).should('be.visible')
-  //cy.get('.css-qmxd6z').should('be.visible')
+  cy.get('.css-qmxd6z').should('be.visible')
   cy.get(sorryElementsN.icDelete).eq(0).should('be.visible').click({ force: true })
   cy.get(sorryElementsN.btDelModal).eq(1).should('be.visible').click({ force: true })
 })
@@ -59,5 +67,15 @@ Cypress.Commands.add('val_exclusao_projeto', { timeout: 7000 }, () => {
        
   
 
+})
+
+Cypress.Commands.add('editar_projeto_timeout', { timeout: 7000 }, (nome,timeout) => {
+  cy.get(sorryElementsN.lkAllProjects).contains('All Projects').should('be.visible').click()
+  cy.get(sorryElementsN.cpEnterProjectId).should('be.visible').type(nome)
+  cy.get(sorryElementsN.icDelete).eq(0).should('be.visible')
+  cy.get('a[href="/'+nome+'/edit"]').should('be.visible').click({force:true})
+  cy.get(sorryElementsN.cpInactivityTimeout).should('be.visible').clear().type(timeout);
+  //cy.get(sorryElementsN.btCreateProjectSave).should('be.visible').click()
+  
 })
 

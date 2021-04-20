@@ -11,6 +11,7 @@ class sorryElements {
         this.icDelete = 'div button span span';
         this.btDelModal = 'div [role="dialog"] button span span';
         this.mensAlert = 'form div div[role="alert"] div';
+       
 
     }
 }

@@ -12,7 +12,7 @@
   "requestTimeout": 120000,
   "viewportHeight": 860,
   "responseTimeout": 600000,
-  "videoCompression": 15,
+  "videoCompression": 10,
 
   "reporter": "cypress-multi-reporters",
   "reporterOptions": {
@@ -26,7 +26,7 @@
     "shortScrFileNames": false,
     "inline": true,
     "charts": true,
-    "autoOpen": true,
+    "autoOpen": false,
     "jsonReport": true,
     "multiReport": true,
     "timestamp": "dd-mm-yyyy_hh-mm-ss",

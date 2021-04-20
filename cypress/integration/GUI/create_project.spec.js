@@ -4,7 +4,7 @@ describe('Create project', () => {
 
 
     const viewPortDic = PRESETS.viewPortDic;
-    let faker = require('faker-br');
+    const faker = require('faker-br');
     let nome = faker.name.firstName();
     let num =
         faker.random.number({
@@ -17,11 +17,11 @@ describe('Create project', () => {
     beforeEach(() => {
         cy.visit(Cypress.env('url'), {
             onBeforeLoad: (win) => {
-                win.sessionStorage.clear()
-                win.onerror = null
+                win.sessionStorage.clear();
+                //win.onerror = null;
             }
         })
-        
+
     })
 
     afterEach(() => {
@@ -37,5 +37,49 @@ describe('Create project', () => {
 
         })
     }
+
+})
+
+describe('Create project errors', () => {
+
+
+    const viewPortDic = PRESETS.viewPortDic;
+    const faker = require('faker-br');
+    let nome = faker.name.firstName();
+    let num =
+        faker.random.number({
+            'min': 1,
+            'max': 9000
+        });
+
+
+
+    beforeEach(() => {
+        cy.visit(Cypress.env('url'), {
+            onBeforeLoad: (win) => {
+                win.sessionStorage.clear();
+                //win.onerror = null;
+            }
+
+        })
+        cy.criar_projeto(nome);
+        cy.val_men_suc_criacao_projeto();
+        cy.get('a[href="/"]').click();
+
+    })
+
+    afterEach(() => {
+        cy.screenshot();
+    })
+
+
+    it('already registered - ', () => {
+
+        cy.criar_projeto(nome);
+
+        cy.val_men_erro_criacao_projeto();
+
+    })
+
 
 })

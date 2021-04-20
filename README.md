@@ -13,17 +13,30 @@ npm i
 
 npm run altUrlApiCypress
 
+OU
+
+
+npm run altUrlApiCypress (configurar o Cypress para mandar resultados da execução para um Dashboard Local)
+
+-Ter docker instalado
+No terminal rodar:
+
+curl --output docker-compose.minio.yml https://raw.githubusercontent.com/sorry-cypress/sorry-cypress/master/docker-compose.minio.yml
+
+e depois
+
+docker-compose -f ./docker-compose.minio.yml up
+
+Editar o arquivo /etc/hosts, acrescentando: 127.0.0.1 storage (abrir e acrescentar linha)
+
+
 #Rodar os testes
-Abrindo o Cypress, no terminal diretório raiz do projeto rodar:
+-Abrir o Cypress. No terminal, diretório raiz do projeto rodar:
 
 npm run open
 
-Sem abrir o executor do Cypress, mas exibindo o browser(Firefox), no terminal diretório raiz do projeto rodar:
+Sem abrir o executor do Cypress, mas exibindo o browser, no terminal diretório raiz do projeto rodar:
 
-npm run test
-
-Sem abrir o executor do Cypress, e em modo headless sem exibir o browser:
-No terminal diretório raiz do projeto rodar:
 
 npm run test_all
 
@@ -31,6 +44,9 @@ Após a execução dos testes, em modo headless vc poderá conferir as evidênci
 
 https://sorry-cypress-demo.herokuapp.com/projeto_base/runs
 
+ou 
+
+http://127.0.0.1:8080/projeto_base/runs
 
 #ESTRUTURA DE DIRETÓRIOS
 
