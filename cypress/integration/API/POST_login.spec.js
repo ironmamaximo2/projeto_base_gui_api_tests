@@ -1,7 +1,28 @@
+const faker = require('faker-br');
+let nome = faker.name.firstName();
+let email = faker.internet.email();
+let administrador = "true";
+let password = "123456";
+
 describe('login api', () => {
 
+
+  beforeEach(() => {
+
+    cy.create_users_api(Cypress.env('url_api'), nome, email, password, administrador)
+
+      .then((resp) => {
+
+        expect(resp).property('status').to.equal(201)
+
+
+      })
+
+
+  })
+
   it('sucess', () => {
-    cy.login_api(Cypress.env('url_api'), Cypress.env('email'), Cypress.env('password'))
+    cy.login_api(Cypress.env('url_api'), email, password)
       .then((resp) => {
         expect(resp).property('status').to.equal(200);
         expect(resp).property('statusText').to.equal('OK');
@@ -17,8 +38,19 @@ describe('login api', () => {
       })
   })
 
+})
+
+describe('login api error', () => {
+
+
+  beforeEach(() => {
+
+
+  })
+
+
   it('invalid email', () => {
-    cy.login_api(Cypress.env('url_api'), "email.inval.com", Cypress.env('password'))
+    cy.login_api(Cypress.env('url_api'), "email.inval.com", password)
       .then((resp) => {
         expect(resp).property('status').to.equal(400);
         console.log(resp.body)

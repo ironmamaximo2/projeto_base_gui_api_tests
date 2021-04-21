@@ -17,19 +17,35 @@ describe('create product', () => {
             'min': 1,
             'max': 50
         });
-    let quantidade = quant.toString()
-
-
+    let quantidade = quant.toString();
+    let email = faker.internet.email();
+    let administrador = "true";
+    let password = "123456";
 
     beforeEach(() => {
 
-        cy.login_api(Cypress.env('url_api'), Cypress.env('email'), Cypress.env('password'))
+        cy.create_users_api(Cypress.env('url_api'), nome, email, password, administrador)
+
+        .then((resp) => {
+            
+                expect(resp).property('status').to.equal(201)
+                expect(resp).property('statusText').to.equal('Created')
+                expect(resp.body).to.have.property('message');
+                expect(resp.body).property('message').to.be.a('string');
+                expect(resp.body).to.contain({
+                    message: "Cadastro realizado com sucesso"
+
+                })
+               
+        })
+
+        cy.login_api(Cypress.env('url_api'), email, password)
             .then((resp) => {
                 return new Promise(resolve => {
                     expect(resp).property('status').to.equal(200)
                     token = resp.body['authorization'];
                     resolve(token)
-                    console.log(token)
+                   // console.log(token)
 
                 })
             })

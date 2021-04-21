@@ -84,6 +84,19 @@ Cypress.Commands.add('list_products_api', (url_api, token) => {
 })
 
 
+Cypress.Commands.add('delete_users_api', (url_api, id, nome, email, password, administrador) => {
+    cy.request({
+        method: 'DELETE',
+        url: url_api + 'usuarios/'+id,
+        failOnStatusCode: false,
+        
+        body:
+        {
+            
+          },
 
+        resp: []
+    })
+})
 
 
