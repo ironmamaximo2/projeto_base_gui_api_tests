@@ -1,17 +1,16 @@
 {
-   
     "env": {
-        "url": "https://sorry-cypress-demo.herokuapp.com/",
+        "url": "http://127.0.0.1:8080/",
         "url_api": "https://serverest.dev/",
+        "url_api2": "<url_api_prod_local>",
         "email": "",
         "password": "",
-        "nome_logado": "",
         "db": {
             "user": "",
             "password": "",
             "host": "",
             "port": "",
             "database": ""
-        }
+          }
     }
 }

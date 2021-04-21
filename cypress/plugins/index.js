@@ -25,6 +25,8 @@ module.exports = (on, config) => {
    
     
   });
+
+  
   on('before:browser:launch', (browser = {}, launchOptions) => {
     //launchOptions.args.push('--use-fake-device-for-media-stream')
     //launchOptions.args.push('--use-fake-ui-for-media-stream')

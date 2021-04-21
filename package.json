@@ -18,8 +18,11 @@
   "main": "cypress.json",
   "scripts": {
     "open": "node_modules/.bin/cypress open",
+    "open_local": "node_modules/.bin/cypress open --env configFile=local",
     "test_gui_all_show": "npm run clean_all && npx cypress run -b chrome --spec cypress/integration/GUI/**/*.spec.js --reporter mochawesome --parallel --record --key projeto_base --ci-build-id build-ALL-$(date +%j)-$(date +%T) && npm run junta_gera_rel",
+    "test_gui_all_show_local_firefox": "npm run clean_all && npx cypress run -b firefox --spec cypress/integration/GUI/**/*.spec.js --env configFile=local --reporter mochawesome --parallel --record --key projeto_base --ci-build-id build-ALL-$(date +%j)-$(date +%T) && npm run junta_gera_rel",
     "test_all": "npm run clean_all && npx cypress run --headless -b chrome --spec cypress/integration/**/**/*.spec.js --reporter mochawesome --parallel --record --key projeto_base --ci-build-id build-ALL-$(date +%j)-$(date +%T) && npm run junta_gera_rel",
+    "test_all_local": "npm run clean_all && npx cypress run --headless -b chrome --spec cypress/integration/**/**/*.spec.js --env configFile=local --reporter mochawesome --parallel --record --key projeto_base --ci-build-id build-ALL-$(date +%j)-$(date +%T) && npm run junta_gera_rel",
     "test_gui_all": "npx cypress run --headless -b chrome --spec cypress/integration/GUI/**/*.spec.js --reporter mochawesome --parallel --record --key projeto_base --ci-build-id build-GUI-$(date +%j)-$(date +%T)",
     "test_api_all": "npx cypress run --spec cypress/integration/API/**/*.spec.js --reporter mochawesome --parallel --record --key projeto_base --ci-build-id build-API-$(date +%j)-$(date +%T)",
     "create_10_users": "npx cypress run --spec cypress/integration/Massa_de_Testes/**/*.spec.js --reporter mochawesome --parallel --record --key projeto_base --ci-build-id build-MASSA-$(date +%j)-$(date +%T)",

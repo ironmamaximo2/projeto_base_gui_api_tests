@@ -1,7 +1,7 @@
 {
     "env": {
         "url": "<url_de_prod>",
-        "url_api": "url_api_prod",
+        "url_api": "<url_api_prod>",
         "db": {
             "user": "",
             "password": "",

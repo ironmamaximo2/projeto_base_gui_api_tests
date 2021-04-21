@@ -64,7 +64,7 @@ describe('Create project errors', () => {
         })
         cy.criar_projeto(nome);
         cy.val_men_suc_criacao_projeto();
-        cy.get('a[href="/"]').click();
+        cy.get('a[href="/"]').eq(0).click({ force: true });
 
     })
 
