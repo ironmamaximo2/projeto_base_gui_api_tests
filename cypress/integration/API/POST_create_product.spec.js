@@ -26,8 +26,8 @@ describe('create product', () => {
 
         cy.create_users_api(Cypress.env('url_api'), nome, email, password, administrador)
 
-        .then((resp) => {
-            
+            .then((resp) => {
+
                 expect(resp).property('status').to.equal(201)
                 expect(resp).property('statusText').to.equal('Created')
                 expect(resp.body).to.have.property('message');
@@ -36,8 +36,8 @@ describe('create product', () => {
                     message: "Cadastro realizado com sucesso"
 
                 })
-               
-        })
+
+            })
 
         cy.login_api(Cypress.env('url_api'), email, password)
             .then((resp) => {
@@ -45,7 +45,7 @@ describe('create product', () => {
                     expect(resp).property('status').to.equal(200)
                     token = resp.body['authorization'];
                     resolve(token)
-                   // console.log(token)
+                    // console.log(token)
 
                 })
             })
@@ -53,7 +53,7 @@ describe('create product', () => {
 
     })
     afterEach(() => {
-
+        cy.screenshot()
     })
 
     it('sucess', () => {

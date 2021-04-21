@@ -17,7 +17,7 @@ describe('Edit project', () => {
             'min': 901,
             'max': 1010
         });
-    
+
 
 
     beforeEach(() => {
@@ -27,7 +27,7 @@ describe('Edit project', () => {
                 //win.onerror = null;
             }
         })
-        cy.criar_projeto(nome+num);
+        cy.criar_projeto(nome + num);
         cy.val_men_suc_criacao_projeto();
 
 
@@ -43,7 +43,7 @@ describe('Edit project', () => {
     it('sucess', () => {
 
 
-        cy.editar_projeto(nome+num, timeout);
+        cy.editar_projeto(nome + num, timeout);
         cy.val_mens_suc_editar_projeto();
 
 

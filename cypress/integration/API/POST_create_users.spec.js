@@ -60,8 +60,9 @@ describe('create users api - errors', () => {
                 })
             })
 
-
-
+    })
+    afterEach(() => {
+        cy.screenshot()
     })
 
 

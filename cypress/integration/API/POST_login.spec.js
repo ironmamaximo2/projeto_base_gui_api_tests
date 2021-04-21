@@ -21,6 +21,10 @@ describe('login api', () => {
 
   })
 
+  afterEach(() => {
+    cy.screenshot()
+  })
+
   it('sucess', () => {
     cy.login_api(Cypress.env('url_api'), email, password)
       .then((resp) => {

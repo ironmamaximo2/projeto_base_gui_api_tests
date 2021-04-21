@@ -25,7 +25,9 @@
     "test_all_local": "npm run clean_all && npx cypress run --headless -b chrome --spec cypress/integration/**/**/*.spec.js --env configFile=local --reporter mochawesome --parallel --record --key projeto_base --ci-build-id build-ALL-$(date +%j)-$(date +%T) && npm run junta_gera_rel",
     "test_gui_all": "npx cypress run --headless -b chrome --spec cypress/integration/GUI/**/*.spec.js --reporter mochawesome --parallel --record --key projeto_base --ci-build-id build-GUI-$(date +%j)-$(date +%T)",
     "test_api_all": "npx cypress run --spec cypress/integration/API/**/*.spec.js --reporter mochawesome --parallel --record --key projeto_base --ci-build-id build-API-$(date +%j)-$(date +%T)",
-    "create_10_users": "npx cypress run --spec cypress/integration/Massa_de_Testes/**/*.spec.js --reporter mochawesome --parallel --record --key projeto_base --ci-build-id build-MASSA-$(date +%j)-$(date +%T)",
+    "create_10_users": "npx cypress run --spec cypress/integration/Massa_de_Testes/POST_create_users.spec.js --reporter mochawesome --parallel --record --key projeto_base --ci-build-id build-MASSA-$(date +%j)-$(date +%T)",
+    "create_10_products": "npx cypress run --spec cypress/integration/Massa_de_Testes/POST_create_product.spec.js --reporter mochawesome --parallel --record --key projeto_base --ci-build-id build-MASSA-$(date +%j)-$(date +%T)",
+    "create_10_users_products": "npm run create_10_users && npm run create_10_products",
     "test_create_users_api": "npx cypress run --headless -b chrome --spec cypress/integration/API/POST_create_users.spec.js --reporter mochawesome --parallel --record --key projeto_base --ci-build-id build-$(date +%j)-$(date +%T)",
     "test_login_api": "npx cypress run --headless -b chrome --spec cypress/integration/API/POST_login.spec.js --reporter mochawesome --parallel --record --key projeto_base --ci-build-id build-$(date +%j)-$(date +%T)",
     "test_create_product_api": "npx cypress run --headless -b chrome --spec cypress/integration/API/POST_create_product.spec.js --reporter mochawesome --parallel --record --key projeto_base --ci-build-id build-$(date +%j)-$(date +%T)",
@@ -41,7 +43,7 @@
     "clean_reports": "rm -rf cypress/reports && rm -rf results.json",
     "clean_screenshots": "rm -rf cypress/screenshots",
     "clean_videos": "rm -rf cypress/videos",
-    "clean_data": "rm -rf cypress/videos/fixtures/data",
+    "clean_data": "rm -rf cypress/fixtures/data",
     "clean_all": "npm run clean_reports && npm run clean_screenshots && npm run clean_videos && npm run clean_data"
   },
   "standard": {

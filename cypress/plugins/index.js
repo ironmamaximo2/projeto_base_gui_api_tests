@@ -17,16 +17,16 @@ function getConfigurationByFile(file) {
 
 
 module.exports = (on, config) => {
-  const file = config.env.configFile  || 'hml'
+  const file = config.env.configFile || 'hml'
   //return getConfigurationByFile(file)
   on("task", {
     dbQuery: (query) => require("cypress-postgres")(query.query, config.env.db)
     //const file = config.env.configFile || 'staging'
-   
-    
+
+
   });
 
-  
+
   on('before:browser:launch', (browser = {}, launchOptions) => {
     //launchOptions.args.push('--use-fake-device-for-media-stream')
     //launchOptions.args.push('--use-fake-ui-for-media-stream')
