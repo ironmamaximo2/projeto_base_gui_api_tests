@@ -13,6 +13,7 @@ cypress/videos
 cypress/reports
 cypress/screenshots
 cypress/fixtures/data/*.txt
+cypress/fixtures/data
 Rel_Compl.json
 xunit.xml
 xunit.xml
