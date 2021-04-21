@@ -30,7 +30,7 @@ describe('create 10 users api', () => {
             })
             console.log(email)
             //cy.writeFile('cypress/fixtures/data/emails_newUsers.txt', "'"+email+"-"+password+"'"+', ', { flag: 'a+' })
-            cy.writeFile('cypress/fixtures/data/emails_newUsers.txt', "'"+email+"'"+', ', { flag: 'a+' })
+            cy.writeFile('cypress/fixtures/data/Massa-Emails.txt', "'"+email+"'"+', ', { flag: 'a+' })
          
     })
 
