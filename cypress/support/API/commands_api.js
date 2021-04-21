@@ -66,6 +66,24 @@ Cypress.Commands.add('edit_users_api', (url_api, id, nome, email, password, admi
     })
 })
 
+Cypress.Commands.add('list_products_api', (url_api, token) => {
+    cy.request({
+        method: 'GET',
+        url: url_api + 'produtos',
+        failOnStatusCode: false,
+        headers: {
+            'Authorization': token,
+            'content-type': 'application/json'
+        },
+        body:
+        {
+            
+          },
+        resp: []
+    })
+})
+
+
 
 
 
