@@ -12,8 +12,7 @@
     "mochawesome": "^4.1.0",
     "mochawesome-merge": "^4.0.3",
     "mochawesome-report-generator": "^5.1.0",
-    "path": "^0.12.7",
-    "pg": "^8.4.2"
+    "path": "^0.12.7"
   },
   "main": "cypress.json",
   "scripts": {
@@ -52,6 +51,5 @@
   "author": "Marcio Aguiar",
   "license": "MIT",
   "dependencies": {
-    "chai": "^4.3.4"
   }
 }
