@@ -1,31 +1,34 @@
+
 pipeline {
-    agent {
-        docker { image 'node:14-alpine' }
-        
-    }
- 
-  stages {
-    stage('Example') {
-      steps {
-        sh 'npm config ls'
-      }
-    }
-    stage('install') {
-      steps {
-        sh 'npm install'
-      }
+    agent any
+
+    tools {nodejs "node"}
+
+    environment {
+        CHROME_BIN = '/bin/google-chrome'
     }
 
-    stage('cypress open') {
-      steps {
-        sh 'npx cypress open'
-      }
+    stages {
+        stage('Dependencies') {
+            steps {
+                sh 'npm i'
+            }
+        }
+        stage('Build') {
+            steps {
+                sh 'npm run build'
+            }
+        }
+       
+        stage('e2e Tests') {
+            steps {
+                sh 'npm run test_all'
+            }
+        }
+        stage('Deploy') {
+            steps {
+                echo 'Deploying....'
+            }
+        }
     }
-
-    stage('test') {
-      steps {
-        sh 'npm run testC'
-      }
-    }
-  }
 }
