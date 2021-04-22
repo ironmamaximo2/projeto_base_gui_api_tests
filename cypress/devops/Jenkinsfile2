@@ -14,21 +14,12 @@ pipeline {
                 sh 'npm i'
             }
         }
-        stage('Build') {
-            steps {
-                sh 'npm run build'
-            }
-        }
        
         stage('e2e Tests') {
             steps {
                 sh 'npm run test_all'
             }
         }
-        stage('Deploy') {
-            steps {
-                echo 'Deploying....'
-            }
-        }
     }
+        
 }
