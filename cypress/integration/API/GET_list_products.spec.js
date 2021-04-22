@@ -1,6 +1,6 @@
 /// <reference types="Cypress" />
 
-describe('list products', () => {
+describe('API-list products', () => {
 
     let token;
     let id;

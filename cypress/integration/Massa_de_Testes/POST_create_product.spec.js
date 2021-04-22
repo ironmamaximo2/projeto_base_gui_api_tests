@@ -1,6 +1,6 @@
 /// <reference types="Cypress" />
 for (let i = 0; i < 8; i++) {
-    describe('create product', () => {
+    describe('generate data-create products ' + i, () => {
 
         let token;
         let id;
@@ -28,14 +28,17 @@ for (let i = 0; i < 8; i++) {
             cy.create_users_api(Cypress.env('url_api'), nome, email, password, administrador)
 
                 .then((resp) => {
+                    return new Promise(resolve => {
+                        expect(resp).property('status').to.equal(201)
+                        expect(resp).property('statusText').to.equal('Created')
+                        expect(resp.body).to.have.property('message');
+                        expect(resp.body).property('message').to.be.a('string');
+                        expect(resp.body).to.contain({
+                            message: "Cadastro realizado com sucesso"
 
-                    expect(resp).property('status').to.equal(201)
-                    expect(resp).property('statusText').to.equal('Created')
-                    expect(resp.body).to.have.property('message');
-                    expect(resp.body).property('message').to.be.a('string');
-                    expect(resp.body).to.contain({
-                        message: "Cadastro realizado com sucesso"
-
+                        })
+                        id = resp.body['_id'];
+                        resolve(id)
                     })
 
                 })

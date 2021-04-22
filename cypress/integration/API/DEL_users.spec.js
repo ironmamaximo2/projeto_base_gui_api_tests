@@ -1,6 +1,6 @@
 /// <reference types="Cypress" />
 
-describe('delete users', () => {
+describe('API-delete users', () => {
 
     let id;
     const faker = require('faker-br');

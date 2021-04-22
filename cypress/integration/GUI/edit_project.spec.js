@@ -1,4 +1,4 @@
-describe('Edit project', () => {
+describe('GUI-Edit project', () => {
 
     const faker = require('faker-br');
     var nome = faker.name.firstName();
@@ -52,7 +52,7 @@ describe('Edit project', () => {
 
 
 })
-describe('Edit project errors', () => {
+describe('GUI-Edit project errors', () => {
 
 
 

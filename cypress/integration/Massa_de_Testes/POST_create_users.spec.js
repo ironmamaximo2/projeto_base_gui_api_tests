@@ -1,6 +1,6 @@
 
 for (let i = 0; i < 8; i++) {
-    describe('create 10 users api', () => {
+    describe('generate data-create users api '+i, () => {
         const faker = require('faker-br');
         let nome = faker.name.firstName();
         let email = faker.internet.email();
@@ -21,7 +21,7 @@ for (let i = 0; i < 8; i++) {
             cy.screenshot()
         })
 
-        it('sucess-' + i, () => {
+        it('sucess', () => {
             cy.create_users_api(Cypress.env('url_api'), nome, email, password, administrador)
 
                 .then((resp) => {

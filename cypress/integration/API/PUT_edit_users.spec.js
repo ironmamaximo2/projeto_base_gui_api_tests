@@ -1,6 +1,6 @@
 /// <reference types="Cypress" />
 
-describe('edit users', () => {
+describe('API-edit users', () => {
 
     let id;
     const faker = require('faker-br');

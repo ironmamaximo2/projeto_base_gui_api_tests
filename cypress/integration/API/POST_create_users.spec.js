@@ -1,6 +1,6 @@
 
 
-describe('create users api', () => {
+describe('API-create users api', () => {
     let faker = require('faker-br');
     let nome = faker.name.firstName();
     let email = faker.internet.email();
@@ -32,7 +32,7 @@ describe('create users api', () => {
 
 })
 
-describe('create users api - errors', () => {
+describe('API-create users api - errors', () => {
     const faker = require('faker-br');
     let nome = faker.name.firstName();
     let email = faker.internet.email();

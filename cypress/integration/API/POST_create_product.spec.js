@@ -1,6 +1,6 @@
 /// <reference types="Cypress" />
 
-describe('create product', () => {
+describe('API-create product', () => {
 
     let token;
     let faker = require('faker-br');
@@ -55,6 +55,7 @@ describe('create product', () => {
     afterEach(() => {
         cy.screenshot()
     })
+   
 
     it('sucess', () => {
 
@@ -68,7 +69,7 @@ describe('create product', () => {
             expect(resp.body).to.contain({
                 "message": "Cadastro realizado com sucesso"
             })
-
+ 
         })
 
 

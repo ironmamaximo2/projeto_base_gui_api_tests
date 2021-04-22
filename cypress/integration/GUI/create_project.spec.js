@@ -1,6 +1,6 @@
 import PRESETS from '../../massa_dados/sets'
 
-describe('Create project', () => {
+describe('GUI-Create project', () => {
 
 
     const viewPortDic = PRESETS.viewPortDic;
@@ -40,7 +40,7 @@ describe('Create project', () => {
 
 })
 
-describe('Create project errors', () => {
+describe('GUI-Create project errors', () => {
 
 
     const viewPortDic = PRESETS.viewPortDic;

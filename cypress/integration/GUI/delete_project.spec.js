@@ -1,4 +1,4 @@
-describe('delete project', () => {
+describe('GUI-delete project', () => {
 
 
     const faker = require('faker-br');
