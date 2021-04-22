@@ -73,7 +73,7 @@ pipeline {
          sh """
            docker run --rm --network host \
            -i $DOCKER_BUILD_TAG \
-           npm run smoke_test_exames
+           npm run test_all
          """
       }
     }
