@@ -1,7 +1,8 @@
 pipeline {
-  agent any
- 
-  tools {nodejs "node"}
+    agent {
+        docker { image 'node:14-alpine' }
+        
+    }
  
   stages {
     stage('Example') {
@@ -23,7 +24,7 @@ pipeline {
 
     stage('test') {
       steps {
-        sh 'npm run test_all'
+        sh 'npm run testC'
       }
     }
   }
