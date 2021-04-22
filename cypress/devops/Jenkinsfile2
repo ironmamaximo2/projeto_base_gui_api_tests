@@ -1,19 +1,30 @@
 pipeline {
-    agent {
-        docker { image 'node:14-alpine' }
-        
+  agent any
+ 
+  tools {nodejs "node"}
+ 
+  stages {
+    stage('Example') {
+      steps {
+        sh 'npm config ls'
+      }
     }
-    stages {
-        stage('node version') {
-            steps {
-                sh 'node --version'
-            }
-        }
-        
-        stage('run tests') {
-            steps {
-                sh 'npm run test_all'
-            }
-        }
+    stage('install') {
+      steps {
+        sh 'npm install'
+      }
     }
+
+    stage('cypress open') {
+      steps {
+        sh 'npx cypress open'
+      }
+    }
+
+    stage('test') {
+      steps {
+        sh 'npm run test_all'
+      }
+    }
+  }
 }
