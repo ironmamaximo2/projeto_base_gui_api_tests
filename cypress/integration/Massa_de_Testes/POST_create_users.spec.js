@@ -18,7 +18,7 @@ for (let i = 0; i < 8; i++) {
 
         })
         afterEach(() => {
-            cy.screenshot()
+            cy.screenshot({ capture: 'fullPage'})
         })
 
         it('sucess', () => {

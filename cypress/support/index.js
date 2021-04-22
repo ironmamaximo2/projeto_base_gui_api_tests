@@ -7,6 +7,7 @@ import './GUI/commands_gui'
 
 
 
+
 Cypress.on('uncaught:exception', (err, runnable) => {
     // returning false here prevents Cypress from
     // failing the test

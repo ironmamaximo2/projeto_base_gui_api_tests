@@ -27,6 +27,7 @@ describe('GUI-Create project', () => {
     afterEach(() => {
         cy.screenshot()
     })
+    
     for (let i = 0; i < (Object.keys(viewPortDic).length); i++) {
 
         it('sucess - ' + viewPortDic[i][0], () => {
@@ -68,12 +69,11 @@ describe('GUI-Create project errors', () => {
 
     })
 
-    afterEach(() => {
-        cy.screenshot();
+     afterEach(() => {
+        cy.screenshot()
     })
 
-
-    it('already registered - ', () => {
+    it('already registered', () => {
 
         cy.criar_projeto(nome);
 

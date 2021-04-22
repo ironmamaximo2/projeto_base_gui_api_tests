@@ -41,7 +41,7 @@ describe('API-edit users', () => {
 
     })
     afterEach(() => {
-        cy.screenshot()
+        cy.screenshot({ capture: 'fullPage'})
     })
 
     it('sucess', () => {

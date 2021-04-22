@@ -22,8 +22,8 @@ describe('API-login api', () => {
   })
 
   afterEach(() => {
-    cy.screenshot()
-  })
+    cy.screenshot({ capture: 'fullPage'})
+})
 
   it('sucess', () => {
     cy.login_api(Cypress.env('url_api'), email, password)
@@ -48,10 +48,13 @@ describe('API-login api error', () => {
 
 
   beforeEach(() => {
-    
+
 
   })
 
+  afterEach(() => {
+    cy.screenshot({ capture: 'fullPage'})
+})
 
   it('invalid email', () => {
     cy.login_api(Cypress.env('url_api'), "email.inval.com", password)

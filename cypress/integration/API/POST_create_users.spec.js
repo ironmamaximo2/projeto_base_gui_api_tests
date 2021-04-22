@@ -12,6 +12,9 @@ describe('API-create users api', () => {
             'max': 9000
         });
     let password = pass.toString()
+    afterEach(() => {
+        cy.screenshot({ capture: 'fullPage'})
+    })
 
     it('sucess', () => {
         cy.create_users_api(Cypress.env('url_api'), nome, email, password, administrador)
@@ -62,7 +65,7 @@ describe('API-create users api - errors', () => {
 
     })
     afterEach(() => {
-        cy.screenshot()
+        cy.screenshot({ capture: 'fullPage'})
     })
 
 

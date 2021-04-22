@@ -88,8 +88,8 @@ describe('GUI-Edit project errors', () => {
 
 
         cy.editar_projeto_timeout(nome, timeoutInv);
-        cy.get('div[role="alert"]').contains('Max value is 900 seconds')
-            .should('be.visible');
+        cy.val_mensagem_timeout_inval();
+        
 
 
     })

@@ -59,12 +59,12 @@ for (let i = 0; i < 8; i++) {
 
 
         afterEach(() => {
-            cy.screenshot()
+            cy.screenshot({ capture: 'fullPage'})
         })
 
         it('sucess', () => {
 
-            cy.create_products_api(Cypress.env('url_api'), token, nome, preco, descricao, quantidade)
+            cy.create_products_api(Cypress.env('url_api'), token, nome+'-'+preco, preco, descricao, quantidade)
                 .then((resp) => {
                     return new Promise(resolve => {
                         expect(resp).property('status').to.equal(201)

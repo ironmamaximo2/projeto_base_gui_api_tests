@@ -3,9 +3,9 @@
   "reporter": "cypress-multi-reporters",
   "reporterOptions": {
       "reportDir": "cypress/reports",
-      "reportFilename": "Relatório-Testes - <Seu Projeto>",
+      "reportFilename": "Relatório-Testes-<Seu Projeto>",
       "reportName": "Relatório",
-      "reportTitle": "Relatório de Testes - <Seu Projeto>",
+      "reportTitle": "Relatório de Testes-<Seu Projeto>",
       "reportPageTitle": "Título da Página",
       "takePassedScreenshot": false,
       "clearOldScreenshots": false,
@@ -15,7 +15,7 @@
       "autoOpen": false,
       "jsonReport": true,
       "multiReport": true,
-      "timestamp": "dd-mm-yyyy_hh-mm-ss",
+      "timestamp": "dd-mm-yyyy_HH-MM-ss",
       "capture": "runner"
   }
   

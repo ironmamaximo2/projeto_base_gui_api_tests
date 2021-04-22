@@ -53,13 +53,13 @@ describe('API-create product', () => {
 
     })
     afterEach(() => {
-        cy.screenshot()
+        cy.screenshot({ capture: 'fullPage'})
     })
    
 
     it('sucess', () => {
 
-        cy.create_products_api(Cypress.env('url_api'), token, nome, preco, descricao, quantidade).then((resp) => {
+        cy.create_products_api(Cypress.env('url_api'), token, nome+'-'+preco, preco, descricao, quantidade).then((resp) => {
 
             expect(resp).property('status').to.equal(201)
             expect(resp).property('statusText').to.equal('Created')

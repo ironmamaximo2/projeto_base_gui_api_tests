@@ -41,7 +41,7 @@ describe('API-list products', () => {
 
     })
     afterEach(() => {
-        cy.screenshot()
+        cy.screenshot({ capture: 'fullPage'})
     })
 
     it('sucess - all', () => {
