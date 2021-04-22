@@ -1,49 +1,19 @@
 pipeline {
-    agent { node { label 'linux && node14' }}
-
-    environment {
-        //PROJECT_NAME="projeto_base_gui_api_tests"
-        //SLACK_CHANNEL = "alertas-projeto_base_gui_api_tests"
-        CYPRESS_CACHE_FOLDER ="/home/jenkins/.cache/Cypress"
-        //CYPRESS_RUN_BINARY="~/Downloads/Cypress/Cypress cypress run"
-        //DOCKER_USER_PASS = credentials('DOCKER_USER_PASS')
-        //DOCKER_REPOSITORY = credentials('DOCKER_REPOSITORY')
-        //DOCKER_USER_LOGIN = credentials('DOCKER_USER_LOGIN')
+    agent {
+        docker { image 'timbru31/node-alpine-git' }
+        
     }
-
-    
-    options {
-        timeout(time: 80, unit: 'MINUTES')
-    }
-
     stages {
-
-
-    stage('Build') {
-      steps {
-        sh """
-          docker build -t $DOCKER_BUILD_TAG . -f Dockerfile
-        """
-      }
+        stage('node version') {
+            steps {
+                sh 'node --version'
+            }
+        }
+        
+        stage('run tests') {
+            steps {
+                sh 'npm run test_all'
+            }
+        }
     }
-
-    stage('Upload') {
-      steps {
-        sh '''docker push $DOCKER_BUILD_TAG'''
-      }
-    }
-
-    stage('Run tests E2E') {
-      steps {
-        echo 'rodar os teste de UI'
-         sh """
-           docker run --rm --network host \
-           -i $DOCKER_BUILD_TAG \
-           npm run test_all
-         """
-      }
-    }
-    
-    }
-
 }
