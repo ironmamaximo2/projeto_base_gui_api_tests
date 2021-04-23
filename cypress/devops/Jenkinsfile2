@@ -4,12 +4,7 @@ pipeline {
  
   tools {nodejs "node"}
  
-  stages {
-    stage('Example') {
-      steps {
-        sh 'npm config ls'
-      }
-    }
+ 
     stage('install') {
       steps {
         sh 'npm install'
