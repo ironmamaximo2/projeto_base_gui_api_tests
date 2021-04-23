@@ -27,7 +27,7 @@ RUN npm config -g set user $(whoami)
 # uid=0(root) gid=0(root) groups=0(root)
 # which means the current user is root
 RUN id
-RUN apt-get update && apt-get install
+RUN apt-get update && apt-get install -y vim nano zsh curl git sudo
 
 
 # point Cypress at the /root/cache no matter what user account is used
