@@ -17,10 +17,6 @@ ENV QT_X11_NO_MITSHM=1
 ENV _X11_NO_MITSHM=1
 ENV _MITSHM=0
 
-# should be root user
-RUN echo "whoami: $(whoami)"
-RUN npm config -g set user $(whoami)
-
 # command "id" should print:
 # uid=0(root) gid=0(root) groups=0(root)
 # which means the current user is root
@@ -30,6 +26,10 @@ RUN id
 # otherwise the base image might have old versions
 RUN npm apt-get install -y nodejs
 RUN npm i -g npm@latest
+# should be root user
+RUN echo "whoami: $(whoami)"
+RUN npm config -g set user $(whoami)
+
 RUN npm install --save-dev cypress
 RUN $(npm bin)/cypress verify
 RUN $(npm bin)/cypress run
