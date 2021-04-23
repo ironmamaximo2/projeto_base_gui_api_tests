@@ -68,16 +68,6 @@ pipeline {
       }
     }
 
-    stage('Change api_url Cypress') {
-      steps {
-        sh '''
-        docker run --rm --network host \
-           -i $DOCKER_BUILD_TAG \ 
-           sed -i -e '//s|api_url:.*$|api_url: "//https://sorry-cypress-demo-director.herokuapp.com///"|g//' $PATH
-           '''
-      }
-    }
-
     stage('Executa testes E2E') {
       steps {
         echo 'rodar os teste de UI'
