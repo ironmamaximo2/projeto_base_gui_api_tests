@@ -44,7 +44,7 @@ RUN yarn --version
 # we really only need to worry about the top folder, fortunately
 RUN ls -la /root
 RUN chmod 755 /root
-
+RUN chown -R 126:133 "/.npm"
 # a few environment variables to make NPM installs easier
 # good colors for most applications
 ENV TERM xterm
