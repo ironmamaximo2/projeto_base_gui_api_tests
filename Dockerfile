@@ -40,6 +40,11 @@ RUN npm --version
 RUN npm install -g yarn@latest --force
 RUN yarn --version
 
+# give every user read access to the "/root" folder where the binary is cached
+# we really only need to worry about the top folder, fortunately
+RUN ls -la /root
+RUN chmod 755 /root
+
 # a few environment variables to make NPM installs easier
 # good colors for most applications
 ENV TERM xterm
