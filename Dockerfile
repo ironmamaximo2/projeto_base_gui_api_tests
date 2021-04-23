@@ -51,7 +51,7 @@ RUN npm i -g yarn@latest npm@latest
 # should print Cypress version
 # plus Electron and bundled Node versions
 RUN cypress version
-RUN sed -i -e 's|api_url:.*$|api_url: "https://sorry-cypress-demo-director.herokuapp.com/"|g' /*/*/.cache/Cypress/*/Cypress/resources/app/packages/server/config/app.yml
+#RUN sed -i -e 's|api_url:.*$|api_url: "https://sorry-cypress-demo-director.herokuapp.com/"|g' /*/.cache/Cypress/*/Cypress/resources/app/packages/server/config/app.yml
 RUN echo  " node version:    $(node -v) \n" \
   "npm version:     $(npm -v) \n" \
   "yarn version:    $(yarn -v) \n" \
