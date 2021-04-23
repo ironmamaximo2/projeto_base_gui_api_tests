@@ -26,11 +26,19 @@ RUN npm config -g set user $(whoami)
 # which means the current user is root
 RUN id
 
+# always grab the latest NPM and Yarn
+# otherwise the base image might have old versions
+RUN npm apt-get install -y nodejs
+RUN npm i -g npm@latest
+RUN npm install --save-dev cypress
+RUN $(npm bin)/cypress verify
+RUN $(npm bin)/cypress run
+
+
 # point Cypress at the /root/cache no matter what user account is used
 # see https://on.cypress.io/caching
 ENV CYPRESS_CACHE_FOLDER=/root/.cache/Cypress
-RUN npm install -g "cypress@7.1.0"
-RUN cypress verify
+
 
 # Cypress cache and installed version
 # should be in the root user's home folder
@@ -43,22 +51,22 @@ RUN cypress version
 # we really only need to worry about the top folder, fortunately
 RUN ls -la /root
 RUN chmod 755 /root
+RUN sed -i -e 's|api_url:.*$|api_url: "https://sorry-cypress-demo-director.herokuapp.com/"|g' /*/.cache/Cypress/*/Cypress/resources/app/packages/server/config/app.yml
 
 # always grab the latest NPM and Yarn
 # otherwise the base image might have old versions
-RUN npm i -g yarn@latest npm@latest
 
 # should print Cypress version
 # plus Electron and bundled Node versions
-RUN cypress version
+
 RUN sed -i -e 's|api_url:.*$|api_url: "https://sorry-cypress-demo-director.herokuapp.com/"|g' /*/.cache/Cypress/*/Cypress/resources/app/packages/server/config/app.yml
-RUN echo  " node version:    $(node -v) \n" \
-  "npm version:     $(npm -v) \n" \
-  "yarn version:    $(yarn -v) \n" \
-  "debian version:  $(cat /etc/debian_version) \n" \
-  "user:            $(whoami) \n" \
-  "chrome:          $(google-chrome --version || true) \n" \
-  "firefox:         $(firefox --version || true) \n"
+#RUN echo  " node version:    $(node -v) \n" \
+#  "npm version:     $(npm -v) \n" \
+#  "yarn version:    $(yarn -v) \n" \
+#  "debian version:  $(cat /etc/debian_version) \n" \
+#  "user:            $(whoami) \n" \
+#  "chrome:          $(google-chrome --version || true) \n" \
+#  "firefox:         $(firefox --version || true) \n"
 
 #ENTRYPOINT ["cypress", "run"]
 
