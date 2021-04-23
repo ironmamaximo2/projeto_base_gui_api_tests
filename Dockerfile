@@ -22,12 +22,26 @@ RUN id
 # see https://on.cypress.io/caching
 ENV CYPRESS_CACHE_FOLDER=/root/.cache/Cypress
 #RUN npm install -g "cypress@6.4.0"
-RUN npm i cypress
+RUN npm i -g cypress
 RUN sed -i -e 's|api_url:.*$|api_url: "https://sorry-cypress-demo-director.herokuapp.com/"|g' /*/.cache/Cypress/*/Cypress/resources/app/packages/server/config/app.yml
-RUN cypress verify
+RUN cypress cache path
+RUN cypress cache list
+RUN cypress info
+RUN cypress version
+#RUN cypress verify
 
 RUN ls -la /root
 RUN chmod 755 /root
+
+RUN cypress version
+RUN echo  " node version:    $(node -v) \n" \
+  "npm version:     $(npm -v) \n" \
+  "yarn version:    $(yarn -v) \n" \
+  "debian version:  $(cat /etc/debian_version) \n" \
+  "user:            $(whoami) \n" \
+  "chrome:          $(google-chrome --version || true) \n" \
+  "firefox:         $(firefox --version || true) \n"
+
 
 
 WORKDIR /home/projeto_base_gui_api_tests/
