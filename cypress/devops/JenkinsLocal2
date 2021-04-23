@@ -4,11 +4,12 @@ pipeline {
   tools { nodejs 'node' }
 
   stages {
-   /* stage('Example') {
+    stage('Build') {
       steps {
-        sh 'npm config ls'
+          sh 'npm config ls'
+        }
       }
-    }*/
+    }
     stage('install') {
       steps {
         sh 'npm install'
