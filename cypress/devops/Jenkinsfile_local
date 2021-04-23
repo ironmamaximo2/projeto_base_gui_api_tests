@@ -7,7 +7,7 @@ pipeline {
             steps {
                 sh 'node --version'
                 //sh 'npm run test_all_pipe'
-                sh 'test_create_gui'
+                sh 'npm run test_create_gui'
             }
         }
     }
