@@ -7,7 +7,7 @@ pipeline {
         stage('Change api_url in Cypress') {
             steps {
 
-                sh 'npm run altUrlApiCypressJenkins'
+                //sh 'npm run altUrlApiCypressJenkins'
             }
         }
         stage('Test E2E') {

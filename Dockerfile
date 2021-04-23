@@ -29,7 +29,7 @@ RUN id
 # point Cypress at the /root/cache no matter what user account is used
 # see https://on.cypress.io/caching
 ENV CYPRESS_CACHE_FOLDER=/root/.cache/Cypress
-RUN npm install -g "cypress@6.4.0"
+RUN npm install -g "cypress@7.1.0"
 RUN cypress verify
 
 # Cypress cache and installed version
@@ -51,6 +51,7 @@ RUN npm i -g yarn@latest npm@latest
 # should print Cypress version
 # plus Electron and bundled Node versions
 RUN cypress version
+RUN sed -i -e 's|api_url:.*$|api_url: \"https://sorry-cypress-demo-director.herokuapp.com/\"|g' /*/.cache/Cypress/*/Cypress/resources/app/packages/server/config/app.yml
 RUN echo  " node version:    $(node -v) \n" \
   "npm version:     $(npm -v) \n" \
   "yarn version:    $(yarn -v) \n" \
@@ -63,9 +64,9 @@ RUN echo  " node version:    $(node -v) \n" \
 
 #RUN apt-get install xvfb
 
-WORKDIR /home/gestao_profissional_gui_api_tests/
+WORKDIR /home/projeto_base_gui_api_tests/
 
-COPY . /home/gestao_profissional_gui_api_tests/
+COPY . /home/projeto_base_gui_api_tests/
 
 RUN CI=true npm i
 
