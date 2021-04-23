@@ -1,15 +1,13 @@
 pipeline {
-  agent any
-
-  tools { nodejs 'node' }
+    agent { node { label 'linux && node14' } }
 
   stages {
     stage('Build') {
       steps {
           sh 'npm config ls'
-        }
       }
     }
+  }
     stage('install') {
       steps {
         sh 'npm install'
@@ -27,5 +25,5 @@ pipeline {
         sh 'npm run test_all'
       }
     }
-  }
+}
 
