@@ -1,40 +1,29 @@
-
 pipeline {
   agent any
-    // this image provides everything needed to run Cypress
 
-  environment {
-    PROJECT_NAME = 'projeto_base_gui_api_tests'
-    PATH = '/*/.cache/Cypress/*/Cypress/resources/app/packages/server/config/app.yml'
-  }
-
-  options {
-    timeout(time: 80, unit: 'MINUTES')
-  }
+  tools { nodejs 'node' }
 
   stages {
-    stage('build') {
+   /* stage('Example') {
       steps {
-        echo "Running build ${env.BUILD_ID} on ${env.JENKINS_URL}"
+        sh 'npm config ls'
+      }
+    }*/
+    stage('install') {
+      steps {
+        sh 'npm install'
       }
     }
 
-    stage('Upload') {
+    stage('cypress open') {
       steps {
-        sh '''npm i'''
+        sh 'npx cypress open'
       }
     }
-    stage('Change api_url Cypress') {
+
+    stage('test') {
       steps {
-        sh '''sed -i -e '//s|api_url:.*$|api_url: "//https://sorry-cypress-demo-director.herokuapp.com///"|g//' $PATH'''
-      }
-    }
-    stage('Executa testes E2E') {
-      steps {
-        echo 'rodar os teste de UI'
-        sh '''
-           npm run test_all
-         '''
+        sh 'npm run test_all'
       }
     }
   }
