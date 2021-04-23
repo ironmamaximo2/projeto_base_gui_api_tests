@@ -19,13 +19,14 @@ ENV _MITSHM=0
 
 
 # should be root user
-RUN echo "jenkins: $(jenkins)"
+RUN echo "whoami: $(whoami)"
 RUN npm config -g set user $(whoami)
 
 # command "id" should print:
 # uid=0(root) gid=0(root) groups=0(root)
 # which means the current user is root
 RUN id
+RUN apt-get update && apt-get install -y vim nano zsh curl git sudo
 
 
 
@@ -46,7 +47,13 @@ RUN cypress version
 # we really only need to worry about the top folder, fortunately
 RUN ls -la /root
 RUN chmod 755 /root
+ARG user_id
+ARG group_id
 
+# Add jenkins user
+RUN groupadd -g ${group_id} jenkins
+RUN useradd jenkins -u ${user_id} -g jenkins --shell /bin/bash --create-home
+USER jenkins
 
 
 # always grab the latest NPM and Yarn
@@ -60,7 +67,7 @@ RUN echo  " node version:    $(node -v) \n" \
   "npm version:     $(npm -v) \n" \
   "yarn version:    $(yarn -v) \n" \
   "debian version:  $(cat /etc/debian_version) \n" \
-  "user:            $(jenkins) \n" \
+  "user:            $(whoami) \n" \
   "chrome:          $(google-chrome --version || true) \n" \
   "firefox:         $(firefox --version || true) \n"
 
