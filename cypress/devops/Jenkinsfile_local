@@ -4,7 +4,8 @@ pipeline {
     stages {
         stage('Change api_url in Cypress') {
             steps {
-                
+
+                sh 'docker exec -u 0 -it mycontainer bash'
                 sh 'npm run altUrlApiCypressJenkins'
             }
         }

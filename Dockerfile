@@ -27,7 +27,7 @@ RUN npm config -g set user $(whoami)
 # uid=0(root) gid=0(root) groups=0(root)
 # which means the current user is root
 RUN id
-RUN docker exec -u 0 -it id bash
+
 
 # point Cypress at the /root/cache no matter what user account is used
 # see https://on.cypress.io/caching
