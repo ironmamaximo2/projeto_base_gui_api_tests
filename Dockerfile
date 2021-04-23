@@ -47,6 +47,7 @@ RUN chmod 755 /root
 # always grab the latest NPM and Yarn
 # otherwise the base image might have old versions
 RUN npm i -g yarn@latest npm@latest
+RUN mkdir -p $USERPROFILE/AppData/Roaming
 
 # should print Cypress version
 # plus Electron and bundled Node versions
