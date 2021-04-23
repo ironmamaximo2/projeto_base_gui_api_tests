@@ -2,7 +2,7 @@
 pipeline {
     agent { dockerfile true }
     stages {
-        stage('Test') {
+        stage('Test E2E') {
             steps {
                 sh 'node --version'
                 sh 'npm run test_all'
