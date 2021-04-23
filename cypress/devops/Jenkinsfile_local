@@ -10,7 +10,7 @@ pipeline {
   stages {
     stage('Cloning Git') {
       steps {
-        git 'https://github.com/ironmamaximo2/projeto_base_gui_api_tests.git'
+        sh 'git clone https://github.com/ironmamaximo2/projeto_base_gui_api_tests.git'
       }
     }
 
