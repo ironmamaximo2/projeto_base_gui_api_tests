@@ -20,7 +20,7 @@ ENV _MITSHM=0
 # should be root user
 RUN echo "whoami: $(whoami)"
 RUN npm config -g set user $(whoami)
-RUN sudo usermod -aG docker $USER
+RUN usermod -aG docker $USER
 
 # command "id" should print:
 # uid=0(root) gid=0(root) groups=0(root)
