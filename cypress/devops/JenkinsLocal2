@@ -2,12 +2,17 @@ pipeline {
     agent {
         docker { image 'node:14-alpine' }
     }
-    environment {
+  /*  environment {
         HOME = '.'
-    }
-
+    }*/
+  
         stage('Test') {
       steps {
+        sh """
+            docker run --name sample -d -u root docker-image:${env.BUILD_ID} 'touch /home/projeto_base_gui_api_tests/'
+            docker cp /home/projeto_base_gui_api_tests/ .
+            docker rm -f sample
+            """
         sh 'node --version'
       }
         }
