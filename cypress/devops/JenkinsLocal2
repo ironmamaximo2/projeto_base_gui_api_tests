@@ -3,6 +3,7 @@ pipeline {
 
     environment {
        PROJECT_NAME="projeto_base_gui_api_tests"
+       PATH = '/*/.cache/Cypress/*/Cypress/resources/app/packages/server/config/app.yml'
         //SLACK_CHANNEL = "profissionais_do_livia_pro_front"
         CYPRESS_CACHE_FOLDER ="/home/jenkins/.cache/Cypress"
         //CYPRESS_RUN_BINARY="~/Downloads/Cypress/Cypress cypress run"
@@ -69,8 +70,11 @@ pipeline {
 
     stage('Change api_url Cypress') {
       steps {
-        sh '''docker run --rm --network host \
-           -i $DOCKER_BUILD_TAG \ sed -i -e '//s|api_url:.*$|api_url: "//https://sorry-cypress-demo-director.herokuapp.com///"|g//' $PATH'''
+        sh '''
+        docker run --rm --network host \
+           -i $DOCKER_BUILD_TAG \ 
+           sed -i -e '//s|api_url:.*$|api_url: "//https://sorry-cypress-demo-director.herokuapp.com///"|g//' $PATH
+           '''
       }
     }
 
