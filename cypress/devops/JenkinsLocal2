@@ -1,22 +1,18 @@
 
 pipeline {
-  agent any {
+  agent any
     // this image provides everything needed to run Cypress
-    docker {
-      image 'cypress/base:10'
-    }
-  }
 
   environment {
     PROJECT_NAME = 'projeto_base_gui_api_tests'
     PATH = '/*/.cache/Cypress/*/Cypress/resources/app/packages/server/config/app.yml'
   }
 
-    options {
-        timeout(time: 80, unit: 'MINUTES')
-    }
+  options {
+    timeout(time: 80, unit: 'MINUTES')
+  }
 
-    stages {
+  stages {
     stage('build') {
       steps {
         echo "Running build ${env.BUILD_ID} on ${env.JENKINS_URL}"
@@ -41,5 +37,5 @@ pipeline {
          '''
       }
     }
-    }
+  }
 }
