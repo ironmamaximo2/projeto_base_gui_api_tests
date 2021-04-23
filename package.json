@@ -31,7 +31,7 @@
     "test_login_api": "npx cypress run --headless -b chrome --spec cypress/integration/API/POST_login.spec.js --reporter mochawesome --parallel --record --key projeto_base --ci-build-id build-$(date +%j)-$(date +%T)",
     "test_create_product_api": "npx cypress run --headless -b chrome --spec cypress/integration/API/POST_create_product.spec.js --reporter mochawesome --parallel --record --key projeto_base --ci-build-id build-$(date +%j)-$(date +%T)",
     "test_edit_users_api": "npx cypress run --headless -b chrome --spec cypress/integration/API/PUT_edit_users.spec.js --reporter mochawesome --parallel --record --key projeto_base --ci-build-id build-$(date +%j)-$(date +%T)",
-    "test_create_gui": "npx cypress run --headless -b chrome --spec cypress/integration/GUI/create_project.spec.js --reporter mochawesome --parallel --record --key projeto_base --ci-build-id build-$(date +%j)-$(date +%T)",
+    "test_create_gui": "npx cypress run --headless --spec cypress/integration/GUI/create_project.spec.js --reporter mochawesome --parallel --record --key projeto_base --ci-build-id build-$(date +%j)-$(date +%T)",
     "test_edit_gui": "npx cypress run --headless -b chrome --spec cypress/integration/GUI/edit_project.spec.js --reporter mochawesome --parallel --record --key projeto_base --ci-build-id build-$(date +%j)-$(date +%T)",
     "test_delete_gui": "npx cypress run --headless -b chrome --spec cypress/integration/GUI/delete_project.spec.js --reporter mochawesome --parallel --record --key projeto_base --ci-build-id build-$(date +%j)-$(date +%T)",
     "altUrlApiCypress": "sed -i -e 's|api_url:.*$|api_url: \"https://sorry-cypress-demo-director.herokuapp.com/\"|g' /*/*/.cache/Cypress/*/Cypress/resources/app/packages/server/config/app.yml",

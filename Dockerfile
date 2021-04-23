@@ -1,4 +1,4 @@
-FROM cypress/browsers:chrome69
+FROM cypress/base:10
 
 
 ENV CI=1
@@ -27,7 +27,6 @@ RUN sed -i -e 's|api_url:.*$|api_url: "https://sorry-cypress-demo-director.herok
 RUN cypress cache path
 RUN cypress cache list
 RUN cypress info
-RUN cypress version
 #RUN cypress verify
 
 RUN ls -la /root
