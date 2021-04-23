@@ -1,6 +1,5 @@
 FROM cypress/browsers:chrome69
-RUN npm i cypress
-RUN sed -i -e 's|api_url:.*$|api_url: "https://sorry-cypress-demo-director.herokuapp.com/"|g' /*/.cache/Cypress/*/Cypress/resources/app/packages/server/config/app.yml
+
 
 ENV CI=1
 
@@ -23,6 +22,8 @@ RUN id
 # see https://on.cypress.io/caching
 ENV CYPRESS_CACHE_FOLDER=/root/.cache/Cypress
 #RUN npm install -g "cypress@6.4.0"
+RUN npm i cypress
+RUN sed -i -e 's|api_url:.*$|api_url: "https://sorry-cypress-demo-director.herokuapp.com/"|g' /*/.cache/Cypress/*/Cypress/resources/app/packages/server/config/app.yml
 RUN cypress verify
 
 RUN ls -la /root
