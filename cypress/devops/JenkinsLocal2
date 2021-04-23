@@ -1,90 +1,39 @@
+
 pipeline {
-    agent { node { label 'linux && node14' }}
-
-    environment {
-       PROJECT_NAME="projeto_base_gui_api_tests"
-       PATH = '/*/.cache/Cypress/*/Cypress/resources/app/packages/server/config/app.yml'
-        //SLACK_CHANNEL = "profissionais_do_livia_pro_front"
-        CYPRESS_CACHE_FOLDER ="/home/jenkins/.cache/Cypress"
-        //CYPRESS_RUN_BINARY="~/Downloads/Cypress/Cypress cypress run"
-        DOCKER_USER_PASS = credentials('DOCKER_USER_PASS')
-        DOCKER_REPOSITORY = credentials('DOCKER_REPOSITORY')
-        DOCKER_USER_LOGIN = credentials('DOCKER_USER_LOGIN')
+  agent {
+    // this image provides everything needed to run Cypress
+    docker {
+      image 'cypress/base:10'
     }
+  }
 
-    
+  environment {
+    PROJECT_NAME = 'projeto_base_gui_api_tests'
+    PATH = '/*/.cache/Cypress/*/Cypress/resources/app/packages/server/config/app.yml'
+  }
+
     options {
         timeout(time: 80, unit: 'MINUTES')
     }
 
     stages {
-
-   /* stage('Notifica início') {
-         steps {
-         slackSend(color: '#87CEFA', message: "Starting build  ${env.BUILD_URL}", channel: "#${env.SLACK_CHANNEL}")
-            }
-        } */
-
-   stage('Get env') {
-      steps {
-        parallel(
-          'Set environment': {
-            script {
-              env.PREVIOUS = env.BUILD_NUMBER - 1
-              env.DOCKER_BUILD_TAG = "$DOCKER_REPOSITORY/$PROJECT_NAME"
-            }
-          },
-
-          'Login at docker': {
-            sh '''
-              set +x
-              docker login $DOCKER_REPOSITORY -u $DOCKER_USER_LOGIN -p $DOCKER_USER_PASS
-              set -x
-            '''
-          },
-        )
-      }
-    }
-
-    stage('Get cache') {
-      steps {
-        sh '''
-          docker pull $DOCKER_PREVIUS_BUILD_TAG || echo "Docker pull fail"
-        '''
-      }
-    }
-
-    stage('Build') {
-      steps {
-        sh """
-          docker build -t $DOCKER_BUILD_TAG . -f Dockerfile
-        """
-      }
-    }
-
     stage('Upload') {
       steps {
-        sh '''docker push $DOCKER_BUILD_TAG'''
+        sh '''npm i'''
       }
     }
-
+    stage('Change api_url Cypress') {
+      steps {
+        sh '''sed -i -e '//s|api_url:.*$|api_url: "//https://sorry-cypress-demo-director.herokuapp.com///"|g//' $PATH'''
+      }
+    }
     stage('Executa testes E2E') {
       steps {
         echo 'rodar os teste de UI'
-         sh """
-           docker run --rm --network host \
-           -i $DOCKER_BUILD_TAG \
+        sh '''
            npm run test_all
-         """
+         '''
       }
     }
-    /* stage('Notifica fim') {
-        steps {
-               slackSend(color: '#87CEFA', message: "End of build  ${env.BUILD_URL}", channel: "#${env.SLACK_CHANNEL}")
-        }
-    } */
     }
-    
-
-
 }
