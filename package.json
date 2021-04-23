@@ -51,5 +51,8 @@
   },
   "author": "Marcio Aguiar",
   "license": "MIT",
-  "dependencies": {}
+  "dependencies": {
+    "mocha": "^8.3.2",
+    "postgres": "^1.0.2"
+  }
 }
