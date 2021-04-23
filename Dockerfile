@@ -43,7 +43,7 @@ RUN cypress version
 # we really only need to worry about the top folder, fortunately
 RUN ls -la /root
 RUN chmod 755 /root
-RUN mkdir -m 777 /*/.cache/Cypress/*/Cypress/resources/app/packages/server/config/app.yml
+RUN chmod 766 /*/.cache/Cypress/*/Cypress/resources/app/packages/server/config/app.yml
 
 # always grab the latest NPM and Yarn
 # otherwise the base image might have old versions
@@ -64,9 +64,9 @@ RUN echo  " node version:    $(node -v) \n" \
 
 #RUN apt-get install xvfb
 
-WORKDIR /home/test_aut_web/
+WORKDIR /home/projeto_base_gui_api_tests/
 
-COPY . /home/test_aut_web/
+COPY . /home/projeto_base_gui_api_tests/
 
 RUN CI=true npm i
 
