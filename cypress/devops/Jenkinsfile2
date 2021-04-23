@@ -1,26 +1,23 @@
 
 pipeline {
-  agent any
- 
-  tools {nodejs "node"}
- 
- 
-    stage('install') {
-      steps {
-        sh 'npm install'
-      }
+    agent {
+        docker {
+            image 'cypress/base:12.16.1' 
+            args '-p 3000:3000' 
+        }
     }
-
-    stage('cypress open') {
-      steps {
-        sh 'npx cypress open'
-      }
+    stages {
+        stage('Install Dependencies') { 
+            steps {
+                sh 'npm i'
+                
+            }
+        }
+        
+        stage('Test') { 
+            steps {
+                sh 'npm run test_all'
+            }
+        }
     }
-
-    stage('test') {
-      steps {
-        sh 'npm run test_all'
-      }
-    }
-  }
 }
