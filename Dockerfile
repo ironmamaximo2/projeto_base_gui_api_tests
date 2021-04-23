@@ -6,15 +6,6 @@
 #   docker build -t cypress/included:6.4.0 .
 #
 FROM cypress/browsers:node12.18.3-chrome87-ff82
-ARG user_id
-ARG group_id
-
-# Add jenkins user
-RUN groupadd -g ${group_id} jenkins
-RUN useradd jenkins -u ${user_id} -g jenkins --shell /bin/bash --create-home
-USER jenkins
-
-
 
 # avoid too many progress messages
 # https://github.com/cypress-io/cypress/issues/1243
@@ -25,6 +16,15 @@ ENV CI=1
 ENV QT_X11_NO_MITSHM=1
 ENV _X11_NO_MITSHM=1
 ENV _MITSHM=0
+
+ARG user_id
+ARG group_id
+
+# Add jenkins user
+RUN groupadd -g ${group_id} jenkins
+RUN useradd jenkins -u ${user_id} -g jenkins --shell /bin/bash --create-home
+USER jenkins
+
 
 # should be root user
 RUN echo "whoami: $(whoami)"
