@@ -6,7 +6,7 @@ pipeline {
         stage('Test E2E') {
             steps {
                 sh 'node --version'
-                sh 'npm run test_all'
+                sh 'npm run test_all_pipe'
             }
         }
     }
