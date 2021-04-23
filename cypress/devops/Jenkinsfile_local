@@ -20,12 +20,13 @@ pipeline {
       }
     }
 
-    stage('Edit api_url Cypress') {
+    
+    stage('test') {
       steps {
-        sh 'sed -i -e "s|api_url:.*$|api_url: ${test}|g" /*/.cache/Cypress/*/Cypress/resources/app/packages/server/config/app.yml'
-      }
-    }
 
+      sh "sed -i -e 's|api_url:.*$|api_url: ${test}|g' /*/.cache/Cypress/*/Cypress/resources/app/packages/server/config/app.yml"
+    }
+  }
 
      
     stage('Test') {
