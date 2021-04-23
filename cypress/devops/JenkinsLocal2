@@ -6,29 +6,25 @@ pipeline {
         echo 'Hi, this is Zulaikha from edureka'
       }
     }
-    stage('Two') {
+
+    stage('Install dependencies') {
       steps {
-        input('Do you want to proceed?')
+        sh 'npm install'
       }
     }
-    stage('Three') {
-      when {
-        not {
-          branch "master"
-        }
-      }
+    stage('Change api_url Cypress') {
       steps {
-        echo "Hello"
+        sh '''sed -i -e '//s|api_url:.*$|api_url: "//https://sorry-cypress-demo-director.herokuapp.com///"|g//' $PATH'''
       }
     }
     stage('Four') {
       parallel {
-        stage('Unit Test') {
+        stage('API Tests') {
           steps {
-            echo "Running the unit test..."
+            sh 'npm test_api'
           }
         }
-        stage('Integration test') {
+        stage('GUI tests') {
           agent {
             docker {
               reuseNode true
@@ -36,7 +32,7 @@ pipeline {
             }
           }
           steps {
-            echo "Running the integration test..."
+            sh 'npm test_gui'
           }
         }
       }
