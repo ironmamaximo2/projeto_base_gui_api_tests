@@ -1,14 +1,35 @@
 
 pipeline {
-    agent {dockerfile true}
-    stages {
+  agent any
+    
+  tools {nodejs "node"}
+    
+  stages {
         
-        stage('Test E2E') {
-            steps {
-                sh 'node --version'
-                //sh 'npm run test_all_pipe'
-                sh 'npm run test_create_gui'
-            }
-        }
+    stage('Cloning Git') {
+      steps {
+        git 'https://github.com/gustavoapolinario/microservices-node-example-todo-frontend.git'
+      }
     }
+        
+    stage('Install dependencies') {
+      steps {
+        sh 'npm install'
+      }
+    }
+
+    stage('Edit api_url Cypress') {
+      steps {
+        sh 'sed -i -e 's|api_url:.*$|api_url: "https://sorry-cypress-demo-director.herokuapp.com/"|g' /*/.cache/Cypress/*/Cypress/resources/app/packages/server/config/app.yml'
+      }
+    }
+
+
+     
+    stage('Test') {
+      steps {
+         sh 'npm test_all'
+      }
+    }      
+  }
 }
