@@ -3,7 +3,7 @@
   "version": "1.0.0",
   "description": "Cypress - Automação",
   "devDependencies": {
-    "cypress": "^7.1.0",
+    "cypress": "^6.5.0",
     "cypress-postgres": "^1.1.1",
     "cypress-postgresql": "^1.0.8",
     "faker": "^4.1.0",
