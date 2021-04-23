@@ -1,12 +1,13 @@
 pipeline {
-    agent { node { label 'linux && node14' } }
+  agent {
+    // this image provides everything needed to run Cypress
+    docker {
+      image 'cypress/base:10'
+    }
+  }
 
   stages {
-    stage('Build') {
-      steps {
-          sh 'npm config ls'
-      }
-    }
+   
     stage('install') {
       steps {
         sh 'npm install'
