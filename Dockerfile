@@ -17,7 +17,6 @@ ENV QT_X11_NO_MITSHM=1
 ENV _X11_NO_MITSHM=1
 ENV _MITSHM=0
 
-
 # should be root user
 RUN echo "whoami: $(whoami)"
 RUN npm config -g set user $(whoami)
@@ -26,14 +25,11 @@ RUN npm config -g set user $(whoami)
 # uid=0(root) gid=0(root) groups=0(root)
 # which means the current user is root
 RUN id
-RUN apt-get update && apt-get install -y vim nano zsh curl git sudo
-
-
 
 # point Cypress at the /root/cache no matter what user account is used
 # see https://on.cypress.io/caching
 ENV CYPRESS_CACHE_FOLDER=/root/.cache/Cypress
-RUN npm install -g "cypress@7.1.0"
+RUN npm install -g "cypress@6.4.0"
 RUN cypress verify
 
 # Cypress cache and installed version
@@ -47,14 +43,6 @@ RUN cypress version
 # we really only need to worry about the top folder, fortunately
 RUN ls -la /root
 RUN chmod 755 /root
-ARG user_id
-ARG group_id
-
-# Add jenkins user
-RUN groupadd -g ${group_id} jenkins
-RUN useradd jenkins -u ${user_id} -g jenkins --shell /bin/bash --create-home
-USER jenkins
-
 
 # always grab the latest NPM and Yarn
 # otherwise the base image might have old versions
@@ -75,11 +63,12 @@ RUN echo  " node version:    $(node -v) \n" \
 
 #RUN apt-get install xvfb
 
-WORKDIR /home/projeto_base_gui_api_tests/
+WORKDIR /home/gestao_profissional_gui_api_tests/
 
-COPY . /home/projeto_base_gui_api_tests/
+COPY . /home/gestao_profissional_gui_api_tests/
 
 RUN CI=true npm i
+
 
 
 
