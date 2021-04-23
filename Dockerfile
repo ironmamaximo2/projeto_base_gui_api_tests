@@ -30,7 +30,7 @@ RUN id
 # see https://on.cypress.io/caching
 ENV CYPRESS_CACHE_FOLDER=/root/.cache/Cypress
 RUN npm install -g "cypress@7.1.0"
-RUN cypress verify
+# RUN cypress verify
 
 # Cypress cache and installed version
 # should be in the root user's home folder
