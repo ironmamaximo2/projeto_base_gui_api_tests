@@ -5,7 +5,7 @@
 # build this image with command
 #   docker build -t cypress/included:6.4.0 .
 #
-FROM cypress/browsers:node12.18.3-chrome87-ff82
+FROM cypress/browsers:chrome69
 
 # avoid too many progress messages
 # https://github.com/cypress-io/cypress/issues/1243
