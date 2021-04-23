@@ -4,6 +4,12 @@ pipeline {
     stages {
         stage('Test E2E') {
             steps {
+                
+                sh 'npm run altUrlApiCypress'
+            }
+        }
+        stage('Test E2E') {
+            steps {
                 sh 'node --version'
                 sh 'npm run test_all'
             }
