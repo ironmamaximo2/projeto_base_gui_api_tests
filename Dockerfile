@@ -21,10 +21,12 @@ ENV _MITSHM=0
 # uid=0(root) gid=0(root) groups=0(root)
 # which means the current user is root
 RUN id
+RUN echo "whoami: $(whoami)"
 
 # always grab the latest NPM and Yarn
 # otherwise the base image might have old versions
-RUN npm apt-get install -y nodejs
+RUN apt-get install -y nodejs
+
 RUN npm i -g npm@latest
 # should be root user
 RUN echo "whoami: $(whoami)"
