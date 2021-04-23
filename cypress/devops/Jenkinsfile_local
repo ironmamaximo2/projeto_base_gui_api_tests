@@ -2,10 +2,10 @@
 pipeline {
     agent { dockerfile true }
     stages {
-        stage('Test E2E') {
+        stage('Change api_url in Cypress') {
             steps {
                 
-                sh 'npm run altUrlApiCypress'
+                sh 'npm run altUrlApiCypressJenkins'
             }
         }
         stage('Test E2E') {
