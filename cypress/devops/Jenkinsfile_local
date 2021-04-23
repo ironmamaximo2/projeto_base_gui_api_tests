@@ -1,8 +1,6 @@
 
 pipeline {
-    agent { dockerfile true{
-      additionalBuildArgs "--build-arg user_id=${user_id} --build-arg group_id=${group_id}"
-    } }
+    agent { dockerfile true }
     stages {
         
         stage('Test E2E') {
