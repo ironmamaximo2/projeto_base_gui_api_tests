@@ -30,7 +30,7 @@ docker-compose -f ./docker-compose.minio.yml up
 Editar o arquivo /etc/hosts, acrescentando: 127.0.0.1 storage (abrir e acrescentar linha)
 
 Link útil para botar SorryCypress em pé localmente:
-https:/ww.linkedin.com/pulse/sorry-cypress-rodando-localmente-em-7-passos-marcio-denis-aguiar/?trackingId=QDCprcVqR1CVJ1%2Bhc2Kj1w%3D%3D
+https://www.linkedin.com/pulse/sorry-cypress-rodando-localmente-em-7-passos-marcio-denis-aguiar/?trackingId=QDCprcVqR1CVJ1%2Bhc2Kj1w%3D%3D
 
 
 #Rodar os testes
