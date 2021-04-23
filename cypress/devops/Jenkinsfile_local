@@ -8,7 +8,7 @@ pipeline {
         
     stage('Cloning Git') {
       steps {
-        git 'https://github.com/gustavoapolinario/microservices-node-example-todo-frontend.git'
+        git 'https://github.com/ironmamaximo2/projeto_base_gui_api_tests.git'
       }
     }
         
@@ -20,7 +20,7 @@ pipeline {
 
     stage('Edit api_url Cypress') {
       steps {
-        sh 'sed -i -e 's|api_url:.*$|api_url: "https://sorry-cypress-demo-director.herokuapp.com/"|g' /*/.cache/Cypress/*/Cypress/resources/app/packages/server/config/app.yml'
+        sh "sed -i -e 's|api_url:.*$|api_url: \"https://sorry-cypress-demo-director.herokuapp.com/\"|g' /*/*/.cache/Cypress/*/Cypress/resources/app/packages/server/config/app.yml"
       }
     }
 
