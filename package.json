@@ -36,7 +36,7 @@
     "test_delete_gui": "npx cypress run --headless -b chrome --spec cypress/integration/GUI/delete_project.spec.js --reporter mochawesome --parallel --record --key projeto_base --ci-build-id build-$(date +%j)-$(date +%T)",
     "altUrlApiCypress": "sed -i -e 's|api_url:.*$|api_url: \"https://sorry-cypress-demo-director.herokuapp.com/\"|g' /*/*/.cache/Cypress/*/Cypress/resources/app/packages/server/config/app.yml",
     "altUrlApiCypressLocal": "sed -i -e 's|api_url:.*$|api_url: \"http://127.0.0.1:1234\"|g' /*/*/.cache/Cypress/*/Cypress/resources/app/packages/server/config/app.yml",
-    "altUrlApiCypressJenkins": "sudo sed -i -e 's|api_url:.*$|api_url: \"https://sorry-cypress-demo-director.herokuapp.com/\"|g' /*/.cache/Cypress/*/Cypress/resources/app/packages/server/config/app.yml",
+    "altUrlApiCypressJenkins": "sed -i -e 's|api_url:.*$|api_url: \"https://sorry-cypress-demo-director.herokuapp.com/\"|g' /*/.cache/Cypress/*/Cypress/resources/app/packages/server/config/app.yml",
     "junta_json": "npx mochawesome-merge 'cypress/reports/*.json' > results.json",
     "gera_rel_html": "npx marge results.json -f Relatório-Testes-Gui-Todos -o cypress/reports/ --inline",
     "junta_gera_rel": "npm run junta_json && npm run gera_rel_html",
