@@ -1,6 +1,8 @@
 
 pipeline {
-    agent { dockerfile true }
+    agent { dockerfile true{
+      additionalBuildArgs "--build-arg user_id=${user_id} --build-arg group_id=${group_id}"
+    } }
     stages {
         stage('Change api_url in Cypress') {
             steps {

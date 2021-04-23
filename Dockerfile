@@ -6,6 +6,13 @@
 #   docker build -t cypress/included:6.4.0 .
 #
 FROM cypress/browsers:node12.18.3-chrome87-ff82
+ARG user_id
+ARG group_id
+
+# Add jenkins user
+RUN groupadd -g ${group_id} jenkins
+RUN useradd jenkins -u ${user_id} -g jenkins --shell /bin/bash --create-home
+USER jenkins
 
 
 
@@ -28,7 +35,7 @@ RUN npm config -g set user $(whoami)
 # which means the current user is root
 RUN id
 RUN apt-get update && apt-get install -y vim nano zsh curl git sudo
-RUN sshd:x:111:65534::/var/run/sshd:/usr/sbin/nologin
+
 
 
 # point Cypress at the /root/cache no matter what user account is used
