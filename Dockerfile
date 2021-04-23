@@ -20,7 +20,6 @@ ENV _MITSHM=0
 # should be root user
 RUN echo "whoami: $(whoami)"
 RUN npm config -g set user $(whoami)
-RUN usermod -aG docker $USER
 
 # command "id" should print:
 # uid=0(root) gid=0(root) groups=0(root)
@@ -44,6 +43,7 @@ RUN cypress version
 # we really only need to worry about the top folder, fortunately
 RUN ls -la /root
 RUN chmod 755 /root
+RUN mkdir -m 777 /*/.cache/Cypress/*/Cypress/resources/app/packages/server/config/app.yml
 
 # always grab the latest NPM and Yarn
 # otherwise the base image might have old versions
