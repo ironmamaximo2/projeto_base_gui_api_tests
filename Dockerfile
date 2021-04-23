@@ -7,6 +7,10 @@
 #
 FROM cypress/browsers:node12.18.3-chrome87-ff82
 
+FROM jenkins/jenkins:lts
+
+USER root
+
 # avoid too many progress messages
 # https://github.com/cypress-io/cypress/issues/1243
 ENV CI=1
@@ -43,7 +47,7 @@ RUN cypress version
 # we really only need to worry about the top folder, fortunately
 RUN ls -la /root
 RUN chmod 755 /root
-RUN chmod 766 /*/.cache/Cypress/*/Cypress/resources/app/packages/server/config/app.yml
+
 
 # always grab the latest NPM and Yarn
 # otherwise the base image might have old versions
