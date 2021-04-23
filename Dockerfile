@@ -29,7 +29,7 @@ RUN id
 # point Cypress at the /root/cache no matter what user account is used
 # see https://on.cypress.io/caching
 ENV CYPRESS_CACHE_FOLDER=/root/.cache/Cypress
-#RUN npm install -g "cypress@6.4.0"
+RUN npm install -g "cypress@7.1.0"
 RUN cypress verify
 
 # Cypress cache and installed version
