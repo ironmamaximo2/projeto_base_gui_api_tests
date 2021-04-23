@@ -3,8 +3,7 @@
   "version": "1.0.0",
   "description": "Cypress - Automação",
   "devDependencies": {
-    "cypress": "^6.9.1",
-    "cypress-multi-reporters": "^1.4.0",
+    "cypress": "^7.1.0",
     "cypress-postgres": "^1.1.1",
     "cypress-postgresql": "^1.0.8",
     "faker": "^4.1.0",
@@ -52,6 +51,5 @@
   },
   "author": "Marcio Aguiar",
   "license": "MIT",
-  "dependencies": {
-  }
+  "dependencies": {}
 }
