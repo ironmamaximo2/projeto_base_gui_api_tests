@@ -29,7 +29,7 @@ RUN id
 # point Cypress at the /root/cache no matter what user account is used
 # see https://on.cypress.io/caching
 ENV CYPRESS_CACHE_FOLDER=/root/.cache/Cypress
-RUN npm install -g "cypress@6.9.1"
+RUN npm install -g "cypress@7.1.0"
 RUN cypress verify
 
 # Cypress cache and installed version
@@ -47,7 +47,6 @@ RUN chmod 755 /root
 # always grab the latest NPM and Yarn
 # otherwise the base image might have old versions
 RUN npm i -g yarn@latest npm@latest
-RUN mkdir -p $USERPROFILE/AppData/Roaming
 
 # should print Cypress version
 # plus Electron and bundled Node versions
