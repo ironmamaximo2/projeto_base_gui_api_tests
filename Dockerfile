@@ -20,6 +20,7 @@ ENV _MITSHM=0
 # should be root user
 RUN echo "whoami: $(whoami)"
 RUN npm config -g set user $(whoami)
+RUN sudo usermod -aG docker $USER
 
 # command "id" should print:
 # uid=0(root) gid=0(root) groups=0(root)
@@ -29,7 +30,7 @@ RUN id
 # point Cypress at the /root/cache no matter what user account is used
 # see https://on.cypress.io/caching
 ENV CYPRESS_CACHE_FOLDER=/root/.cache/Cypress
-RUN npm install -g "cypress@6.4.0"
+RUN npm install -g "cypress@7.1.0"
 RUN cypress verify
 
 # Cypress cache and installed version
