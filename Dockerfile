@@ -27,6 +27,7 @@ RUN npm config -g set user $(whoami)
 # uid=0(root) gid=0(root) groups=0(root)
 # which means the current user is root
 RUN id
+RUN apt-get update && apt-get install -y build-essential curl git libfreetype6-dev libpng12-dev libzmq3-dev pkg-config python-dev python-numpy python-pip software-properties-common swig zip zlib1g-d
 
 
 # point Cypress at the /root/cache no matter what user account is used
