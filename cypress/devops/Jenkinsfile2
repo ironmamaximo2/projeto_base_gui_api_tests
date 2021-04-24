@@ -58,11 +58,6 @@ pipeline {
       steps {
         // start local server in the background
         // we will shut it down in "post" command block
-        sh 'npm run altUrlApiCypress'
-      }
-      steps {
-        // start local server in the background
-        // we will shut it down in "post" command block
         sh 'nohup npm run start:ci &'
       }
     }
@@ -88,7 +83,7 @@ pipeline {
         stage('tester A') {
           steps {
             echo "Running build ${env.BUILD_ID}"
-            sh "npm run test_apil_all"
+            sh "npm run e2e:record:parallel"
           }
         }
 
@@ -96,7 +91,7 @@ pipeline {
         stage('tester B') {
           steps {
             echo "Running build ${env.BUILD_ID}"
-            sh "npm run test_gui_all"
+            sh "npm run e2e:record:parallel"
           }
         }
       }
@@ -108,7 +103,7 @@ pipeline {
     // shutdown the server running in the background
     always {
       echo 'Stopping local server'
-      sh 'npm run altUrlApiCypress'
+      sh 'pkill -f http-server'
     }
   }
 }
