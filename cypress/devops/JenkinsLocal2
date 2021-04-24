@@ -5,7 +5,7 @@ pipeline {
     }
     environment {
         HTTP_PORT = 8081
-        JENKINS_URL="http://127.0.0.1:8081/"
+        JENKINS_URL="http://127.0.0.1/"
         PROJECT_NAME="projeto_base_gui_api_tests"
         //SLACK_CHANNEL = "alertas-projeto_base_gui_api_tests"
         CYPRESS_CACHE_FOLDER ="/home/jenkins/.cache/Cypress"
@@ -19,7 +19,7 @@ pipeline {
       stage('Get cache') {
       steps {
         sh '''
-          docker pull $DOCKER_PREVIUS_BUILD_TAG || echo "Docker pull fail"
+          docker pull || echo "Docker pull fail"
         '''
       }
     }
@@ -27,14 +27,14 @@ pipeline {
     stage('Build') {
       steps {
         sh """
-          docker build -t $DOCKER_BUILD_TAG . -f Dockerfile
+          docker build -t . -f Dockerfile
         """
       }
     }
 
     stage('Upload') {
       steps {
-        sh '''docker push $DOCKER_BUILD_TAG'''
+        sh '''docker push'''
       }
     }
     // first stage installs node dependencies and Cypress binary
