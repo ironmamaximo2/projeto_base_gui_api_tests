@@ -3,7 +3,7 @@ pipeline {
 
     environment {
         PROJECT_NAME="projeto_base_gui_api_tests"
-        SLACK_CHANNEL = "alertas-projeto_base_gui_api_tests"
+        //SLACK_CHANNEL = "alertas-projeto_base_gui_api_tests"
         CYPRESS_CACHE_FOLDER ="/home/jenkins/.cache/Cypress"
         //CYPRESS_RUN_BINARY="~/Downloads/Cypress/Cypress cypress run"
         DOCKER_USER_PASS = credentials('DOCKER_USER_PASS')
@@ -18,11 +18,20 @@ pipeline {
 
     stages {
 
-    stage('Notifica início') {
-         steps {
-         slackSend(color: '#87CEFA', message: "Starting build  ${env.BUILD_URL}", channel: "#${env.SLACK_CHANNEL}")
-            }
-        }
+   // stage('Notifica início') {
+     //    steps {
+       //  slackSend(color: '#87CEFA', message: "Starting build  ${env.BUILD_URL}", channel: "#${env.SLACK_CHANNEL}")
+         //   }
+        //}
+  stage('teste') {
+     steps {
+       sh 'echo teste'
+      }
+  }
+
+     
+
+  
 
    stage('Get env') {
       steps {
