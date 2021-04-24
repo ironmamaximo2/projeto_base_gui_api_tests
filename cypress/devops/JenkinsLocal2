@@ -13,9 +13,6 @@ pipeline {
     steps {
         sh 'cd projeto_base_api_tests'
         sh 'npm i'
-      }
-    
-    steps {
         sh 'npm run test_gui_all'
       }
     }
