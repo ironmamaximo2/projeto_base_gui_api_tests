@@ -6,7 +6,8 @@ pipeline {
   stages {
     stage('Cloning Git') {
       steps {
-        sh 'git clone https://github.com/ironmamaximo2/projeto_base_gui_api_tests.git'
+        //sh 'git clone https://github.com/ironmamaximo2/projeto_base_gui_api_tests.git'
+        sh 'echo teste'
       }
     }
     stage('run e2e tests') {
