@@ -1,5 +1,5 @@
 pipeline {
-  agent { any { label 'linux && node14' }}
+  agent { any { label 'cypress/base:14.7.0' }}
 
     
   stages {
