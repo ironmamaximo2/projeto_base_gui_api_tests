@@ -11,7 +11,7 @@ pipeline {
     }
     stage('run e2e tests') {
     steps {
-        sh 'cd projeto_base_api_tests'
+        //sh 'cd projeto_base_api_tests'
         sh 'npm i'
         sh 'npm run test_gui_all'
       }
