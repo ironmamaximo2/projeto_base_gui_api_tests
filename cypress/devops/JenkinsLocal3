@@ -1,15 +1,9 @@
 pipeline {
-  agent { any { label 'cypress/base:14.7.0' }}
+  agent { any { dockerfile }}
 
     
   stages {
         
-        
-    stage('Install dependencies') {
-      steps {
-        sh 'npm install'
-      }
-    }
      
     stage('Test') {
       steps {
