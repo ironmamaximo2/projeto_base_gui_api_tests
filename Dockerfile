@@ -137,3 +137,7 @@ WORKDIR /home/projeto_base_gui_api_tests/
 COPY . /home/projeto_base_gui_api_tests/
 
 RUN CI=true npm i
+
+RUN npm i
+
+RUN npm run test_all
