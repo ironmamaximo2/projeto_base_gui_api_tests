@@ -24,10 +24,4 @@ pipeline {
       }
     }
   }
-  post {
-    // Send an email in case of failure
-    failure {
-      mail to: "ironmaximo2@gmail.com", subject: "Cypress e2e Tests failure", body: "The Cypress e2e tests pipeline has failed"
-    }
-  }
-}
+ }
