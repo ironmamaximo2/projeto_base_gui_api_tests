@@ -1,12 +1,39 @@
 pipeline {
-  agent {
-    // this image provides everything needed to run Cypress
-    docker {
-      image 'cypress/base:10'
+  agent {dockerfile}
+    environment {
+        HTTP_PORT = 8081
+        JENKINS_URL="http://127.0.0.1:8081/"
+        PROJECT_NAME="projeto_base_gui_api_tests"
+        //SLACK_CHANNEL = "alertas-projeto_base_gui_api_tests"
+        CYPRESS_CACHE_FOLDER ="/home/jenkins/.cache/Cypress"
+        //CYPRESS_RUN_BINARY="~/Downloads/Cypress/Cypress cypress run"
+        //DOCKER_USER_PASS = credentials('DOCKER_USER_PASS')
+        //DOCKER_REPOSITORY = credentials('DOCKER_REPOSITORY')
+        //DOCKER_USER_LOGIN = credentials('DOCKER_USER_LOGIN')
     }
-  }
 
   stages {
+      stage('Get cache') {
+      steps {
+        sh '''
+          docker pull $DOCKER_PREVIUS_BUILD_TAG || echo "Docker pull fail"
+        '''
+      }
+    }
+
+    stage('Build') {
+      steps {
+        sh """
+          docker build -t $DOCKER_BUILD_TAG . -f Dockerfile
+        """
+      }
+    }
+
+    stage('Upload') {
+      steps {
+        sh '''docker push $DOCKER_BUILD_TAG'''
+      }
+    }
     // first stage installs node dependencies and Cypress binary
     stage('build') {
       steps {
@@ -48,7 +75,7 @@ pipeline {
         stage('tester A') {
           steps {
             echo "Running build ${env.BUILD_ID}"
-            sh "npm run e2e:record:parallel"
+            sh "npm run test_gui_all"
           }
         }
 
@@ -56,7 +83,7 @@ pipeline {
         stage('tester B') {
           steps {
             echo "Running build ${env.BUILD_ID}"
-            sh "npm run e2e:record:parallel"
+            sh "npm run test_api_all"
           }
         }
       }
