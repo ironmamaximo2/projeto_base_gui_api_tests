@@ -1,8 +1,8 @@
 pipeline {
   agent {
     // this image provides everything needed to run Cypress
-    docker {
-      image 'cypress/base:10'
+    any {
+      dockerfile
     }
   }
 
@@ -17,8 +17,7 @@ pipeline {
       }
 
       steps {
-        sh 'npm ci'
-        sh "npm run test:ci:record"
+        sh "npm run test_all"
       }
     }
   }
