@@ -1,5 +1,7 @@
 pipeline {
-  agent {dockerfile}
+    agent {
+        docker {dockerfile}
+    }
     environment {
         HTTP_PORT = 8081
         JENKINS_URL="http://127.0.0.1:8081/"
