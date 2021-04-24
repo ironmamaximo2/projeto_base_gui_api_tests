@@ -1,95 +1,31 @@
 pipeline {
-    agent {
-        //docker {dockerfile}
-        node { label 'linux && node14' }
-    }
-    environment {
-        HTTP_PORT = 8081
-        JENKINS_URL="http://127.0.0.1/"
-        PROJECT_NAME="projeto_base_gui_api_tests"
-        //SLACK_CHANNEL = "alertas-projeto_base_gui_api_tests"
-        CYPRESS_CACHE_FOLDER ="/home/jenkins/.cache/Cypress"
-        //CYPRESS_RUN_BINARY="~/Downloads/Cypress/Cypress cypress run"
-        //DOCKER_USER_PASS = credentials('DOCKER_USER_PASS')
-        //DOCKER_REPOSITORY = credentials('DOCKER_REPOSITORY')
-        //DOCKER_USER_LOGIN = credentials('DOCKER_USER_LOGIN')
-    }
+  agent any
+
+  tools { nodejs 'node' }
+
+  environment {
+        PATH = '/*/.cache/Cypress/*/Cypress/resources/app/packages/server/config/app.yml'
+  }
 
   stages {
-      stage('Get cache') {
+    stage('Cloning Git') {
       steps {
-        sh '''
-          docker pull || echo "Docker pull fail"
-        '''
+        sh 'git clone https://github.com/ironmamaximo2/projeto_base_gui_api_tests.git'
       }
     }
-
-    stage('Build') {
-      steps {
-        sh """
-          docker build -t . -f Dockerfile
-        """
-      }
-    }
-
-    stage('Upload') {
-      steps {
-        sh '''docker push'''
-      }
-    }
-    // first stage installs node dependencies and Cypress binary
-    stage('build') {
-      steps {
-        // there a few default environment variables on Jenkins
-        // on local Jenkins machine (assuming port 8080) see
-        // http://localhost:8080/pipeline-syntax/globals#env
-        echo "Running build ${env.BUILD_ID} on ${env.JENKINS_URL}"
-        sh 'npm ci'
-        sh 'npm run cy:verify'
-      }
-    }
-
-    stage('start local server') {
-      steps {
-        // start local server in the background
-        // we will shut it down in "post" command block
-        sh 'nohup npm run start:ci &'
-      }
-    }
-
-    // this stage runs end-to-end tests, and each agent uses the workspace
-    // from the previous stage
-    stage('cypress parallel tests') {
+    stage('run e2e tests') {
       environment {
-        // we will be recording test results and video on Cypress dashboard
-        // to record we need to set an environment variable
-        // we can load the record key variable from credentials store
-        // see https://jenkins.io/doc/book/using/using-credentials/
-        CYPRESS_RECORD_KEY = credentials('cypress-example-kitchensink-record-key')
-        // because parallel steps share the workspace they might race to delete
-        // screenshots and videos folders. Tell Cypress not to delete these folders
-        CYPRESS_trashAssetsBeforeRuns = 'false'
+        
       }
-
-      // https://jenkins.io/doc/book/pipeline/syntax/#parallel
-      parallel {
-        // start several test jobs in parallel, and they all
-        // will use Cypress Dashboard to load balance any found spec files
-        stage('tester A') {
-          steps {
-            echo "Running build ${env.BUILD_ID}"
-            sh "npm run test_gui_all"
-          }
-        }
-
-        // second tester runs the same command
-        stage('tester B') {
-          steps {
-            echo "Running build ${env.BUILD_ID}"
-            sh "npm run test_api_all"
-          }
-        }
+    steps {
+        sh 'npm run test_gui_all'
       }
+    }
+  }
+  post {
+    // Send an email in case of failure
+    failure {
+      mail to: "ironmaximo2@gmail.com", subject: "Cypress e2e Tests failure", body: "The Cypress e2e tests pipeline has failed"
     }
   }
 }
