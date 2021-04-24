@@ -1,10 +1,5 @@
 pipeline {
-  agent {
-    // this image provides everything needed to run Cypress
-    any {
-      dockerfile
-    }
-  }
+  agent { dockerfile true }
 
   stages {
     stage('build and test') {
@@ -17,6 +12,13 @@ pipeline {
       }
 
       steps {
+        sh "echo teste"
+      }
+    }
+    stage('build and test') {
+      
+
+     steps {
         sh "npm run test_all"
       }
     }
