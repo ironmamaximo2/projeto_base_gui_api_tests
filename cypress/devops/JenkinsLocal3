@@ -1,7 +1,6 @@
 pipeline {
-  agent any
-    
-  tools {nodejs "node"}
+  agent { any { label 'linux && node14' }}
+
     
   stages {
         
