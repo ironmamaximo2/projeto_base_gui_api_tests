@@ -1,6 +1,7 @@
 pipeline {
     agent {
-        docker {dockerfile}
+        //docker {dockerfile}
+        node { label 'linux && node14' }
     }
     environment {
         HTTP_PORT = 8081
