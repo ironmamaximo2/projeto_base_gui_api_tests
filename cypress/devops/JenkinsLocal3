@@ -1,15 +1,11 @@
-
-  pipeline {
+pipeline {
     agent { dockerfile true }
-
-    
-  stages {
-        
-     
-    stage('Test') {
-      steps {
-         sh 'npm run test_api_all'
-      }
-    }      
-  }
+    stages {
+        stage('Test') {
+            steps {
+                sh 'node --version'
+                sh 'svn --version'
+            }
+        }
+    }
 }
