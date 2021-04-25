@@ -1,7 +1,9 @@
 describe('GUI-Edit project', () => {
 
     const faker = require('faker-br');
-    var nome = faker.name.firstName();
+    let nome = faker.name.firstName();
+    let nome2 = faker.name.firstName();
+
     let num =
         faker.random.number({
             'min': 1,
@@ -72,7 +74,7 @@ describe('GUI-Edit project errors', () => {
                 win.onerror = null;
             }
         })
-        cy.criar_projeto(nome);
+        cy.criar_projeto(nome2+num);
         cy.val_men_suc_criacao_projeto();
 
     })
@@ -87,7 +89,7 @@ describe('GUI-Edit project errors', () => {
     it('invalid timeout', () => {
 
 
-        cy.editar_projeto_timeout(nome, timeoutInv);
+        cy.editar_projeto_timeout(nome2+num, timeoutInv);
         cy.val_mensagem_timeout_inval();
         
 
