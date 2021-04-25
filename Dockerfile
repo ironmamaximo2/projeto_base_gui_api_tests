@@ -63,9 +63,9 @@ RUN echo  " node version:    $(node -v) \n" \
 
 #RUN apt-get install xvfb
 
-WORKDIR /home/test_aut_web/
+WORKDIR /home/projeto_base_gui_api_tests/
 
-COPY . /home/test_aut_web/
+COPY . /home/projeto_base_gui_api_tests/
 
 RUN CI=true npm i
 
