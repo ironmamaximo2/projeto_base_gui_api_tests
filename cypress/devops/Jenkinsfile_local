@@ -1,9 +1,9 @@
 pipeline {
-        agent {
-            docker {
-            args '-u root:sudo'
-         }
+    agent {
+        dockerfile true {
+            args '-u root:sudo -v $HOME/workspace/myproject:/myproject'
         }
+    }
         
     stages {
         stage('Version') {
