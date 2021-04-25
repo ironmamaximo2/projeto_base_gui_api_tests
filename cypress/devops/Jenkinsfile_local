@@ -1,5 +1,6 @@
 def user_id
 def group_id
+def id
 node {
   user_id = sh(returnStdout: true, script: 'id -u').trim()
   group_id = sh(returnStdout: true, script: 'id -g').trim()
@@ -18,6 +19,7 @@ pipeline {
             steps {
                 sh 'echo ${user_id}'
                 sh 'echo ${group_id}'
+                sh 'echo ${id}
 
             }
         }
