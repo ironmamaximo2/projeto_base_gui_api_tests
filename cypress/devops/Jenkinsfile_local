@@ -16,8 +16,8 @@ pipeline {
         }
         stage('Test') {
             steps {
-                sh 'echo user_id'
-                sh 'echo group_id'
+                sh 'echo ${user_id}'
+                sh 'echo ${group_id}'
 
             }
         }
