@@ -1,9 +1,12 @@
+def user_id
+def group_id
+node {
+  user_id = sh(returnStdout: true, script: 'id -u').trim()
+  group_id = sh(returnStdout: true, script: 'id -g').trim()
+}
+
 pipeline {
-    agent {
-        dockerfile true {
-            args '-u root:sudo -v $HOME/workspace/myproject:/myproject'
-        }
-    }
+    agent { dockerfile true }
         
     stages {
         stage('Version') {
@@ -13,7 +16,9 @@ pipeline {
         }
         stage('Test') {
             steps {
-                sh 'npm run test_all'
+                sh 'echo user_id'
+                sh 'echo group_id'
+
             }
         }
     }
