@@ -6,7 +6,7 @@ pipeline {
                 sh 'node --version'
             }
         }
-         stage('Version') {
+         stage('Mount') {
             steps {
                 sh 'mount -o remount,exec /var'
             }
