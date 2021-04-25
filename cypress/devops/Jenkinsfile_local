@@ -1,10 +1,11 @@
 def user_id
 def group_id
 def id
-def user = 'id -u'.execute().text
+def user
 node {
   user_id = sh(returnStdout: true, script: 'id -u').trim()
   group_id = sh(returnStdout: true, script: 'id -g').trim()
+  
 }
 
 pipeline {
