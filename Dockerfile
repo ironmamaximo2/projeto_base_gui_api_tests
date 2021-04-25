@@ -17,17 +17,7 @@ ENV QT_X11_NO_MITSHM=1
 ENV _X11_NO_MITSHM=1
 ENV _MITSHM=0
 
-######
-######
-RUN chmod 711 /root
-RUN chmod 777 -R /root/.cache/Cypress
-ENV CYPRESS_CACHE_FOLDER /root/.cache/Cypress
 
-RUN mkdir /home/anon
-RUN chmod 777 /home/anon
-ENV HOME /home/anon
-######
-######
 
 # should be root user
 RUN echo "whoami: $(whoami)"
@@ -50,6 +40,18 @@ RUN cypress cache path
 RUN cypress cache list
 RUN cypress info
 RUN cypress version
+
+######
+######
+RUN chmod 711 /root
+RUN chmod 777 -R /root/.cache/Cypress
+ENV CYPRESS_CACHE_FOLDER /root/.cache/Cypress
+
+RUN mkdir /home/anon
+RUN chmod 777 /home/anon
+ENV HOME /home/anon
+######
+######
 
 # give every user read access to the "/root" folder where the binary is cached
 # we really only need to worry about the top folder, fortunately
