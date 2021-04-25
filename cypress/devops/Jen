@@ -8,7 +8,7 @@ pipeline {
         }
          stage('Mount') {
             steps {
-                sh 'mount -o remount,exec /var'
+                sh 'sudo mount -o remount,exec /var'
             }
         }
     }
