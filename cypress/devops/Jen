@@ -8,7 +8,7 @@ pipeline {
         }
          stage('Mount') {
             steps {
-                sh 'sudo mount -o remount,exec /var'
+                sh 'npm run test_all'
             }
         }
     }
