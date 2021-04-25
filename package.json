@@ -52,6 +52,7 @@
   "author": "Marcio Aguiar",
   "license": "MIT",
   "dependencies": {
+    "fs-extra": "^9.1.0",
     "mocha": "^8.3.2",
     "postgres": "^1.0.2"
   }
