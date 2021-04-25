@@ -1,5 +1,10 @@
 pipeline {
-        agent { dockerfile true {args '-u root:root'} }
+        agent {
+        dockerfile true {
+            image 'ubuntu'
+            args '-u root:sudo'
+        }
+    }
         
     stages {
         stage('Version') {
