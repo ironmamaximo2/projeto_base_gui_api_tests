@@ -1,12 +1,3 @@
-def user_id
-def group_id
-def id
-def user
-node {
-  user_id = sh(returnStdout: true, script: 'id -u').trim()
-  group_id = sh(returnStdout: true, script: 'id -g').trim()
-  
-}
 
 pipeline {
     agent { dockerfile true }
@@ -19,10 +10,7 @@ pipeline {
         }
         stage('Test') {
             steps {
-                sh 'echo ${user_id}'
-                sh 'echo ${group_id}'
-                sh 'echo ${id}'
-                sh 'echo ${user}'
+                
 
             }
         }
