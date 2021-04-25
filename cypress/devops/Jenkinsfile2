@@ -41,8 +41,16 @@ pipeline {
     }
   }
 
+
+
   stages {
     // first stage installs node dependencies and Cypress binary
+
+     stage('Checkout code') {
+        steps {
+            checkout scm
+        }
+    }
     stage('build') {
       steps {
         // there a few default environment variables on Jenkins
