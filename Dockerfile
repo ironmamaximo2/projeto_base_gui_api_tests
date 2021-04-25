@@ -47,9 +47,9 @@ RUN chmod 711 /root
 RUN chmod 777 -R /root/.cache/Cypress
 ENV CYPRESS_CACHE_FOLDER /root/.cache/Cypress
 
-RUN mkdir /home/anon
-RUN chmod 777 /home/anon
-ENV HOME /home/anon
+##RUN mkdir /home/anon
+##RUN chmod 777 /home/anon
+##ENV HOME /home/anon
 ######
 ######
 
