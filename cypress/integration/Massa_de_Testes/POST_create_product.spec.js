@@ -1,5 +1,5 @@
 /// <reference types="Cypress" />
-for (let i = 0; i < 8; i++) {
+for (let i = 0; i < 10; i++) {
     describe('generate data-create products ' + i, () => {
 
         let token;

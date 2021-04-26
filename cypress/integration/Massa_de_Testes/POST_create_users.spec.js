@@ -1,5 +1,5 @@
 
-for (let i = 0; i < 8; i++) {
+for (let i = 0; i < 10; i++) {
     describe('generate data-create users api '+i, () => {
         const faker = require('faker-br');
         let nome = faker.name.firstName();

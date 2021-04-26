@@ -84,7 +84,13 @@ COPY . /home/projeto_base_gui_api_tests/
 
 RUN CI=true npm i
 
-RUN npm run test_all
+RUN npm run test_api_all
+
+RUN npm run test_gui_all
+
+RUN run create_10_products
+
+RUN run create_10_users
 
 
 
