@@ -88,9 +88,9 @@ RUN npm run test_api_all
 
 RUN npm run test_gui_all
 
-RUN run create_10_products
+RUN npm run create_10_products
 
-RUN run create_10_users
+RUN npm run create_10_users
 
 
 
