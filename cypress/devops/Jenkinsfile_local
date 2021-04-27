@@ -1,6 +1,6 @@
 pipeline {
- agent { dockerfile true}
-   //agent any
+ //agent { dockerfile true}
+   agent any
 
     environment {
         PROJECT_NAME="projeto_base_gui_api_tests"
