@@ -1,4 +1,4 @@
-
+pipeline {
  agent { node { label 'linux && node14' }}
 
     environment {
