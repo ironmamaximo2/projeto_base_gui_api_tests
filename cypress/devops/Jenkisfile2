@@ -1,9 +1,9 @@
 pipeline {
     agent {
-        dockerfile true{
+        dockerfile true//{
             //image 'cypress/browsers:node12.18.3-chrome87-ff82' 
             args '-p 3000:3000' 
-        }
+        //}
     }
     stages {
         stage('Install Dependencies') { 
