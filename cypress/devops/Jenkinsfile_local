@@ -8,6 +8,16 @@ pipeline {
                 sh 'node --version'
             }
         }
+        stage('Example') {
+            steps {
+                sh 'npm config ls'
+            }
+        }
+        stage('Example2') {
+            steps {
+              sh 'npm i'
+            }
+        }
         stage('Test') {
             steps {
                sh 'npm run test_api_all'
