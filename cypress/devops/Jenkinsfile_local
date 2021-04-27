@@ -16,14 +16,12 @@ pipeline {
 
    stage('Get env') {
       steps {
-        parallel(
           'Set environment': {
             script {
               env.PREVIOUS = env.BUILD_NUMBER - 1
               env.DOCKER_BUILD_TAG = "$PROJECT_NAME"
             }
-          },
-        )
+          }
       }
     }
     stage('Get cache') {
@@ -50,7 +48,7 @@ pipeline {
          """     
       }
     }
-    stage('run-parallel-branches') {
+    stage('Run tests in parallel') {
       steps {
       parallel(
       a: {
