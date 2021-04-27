@@ -50,7 +50,7 @@ pipeline {
 
     stage('Upload') {
       steps {
-        sh '''docker push $DOCKER_BUILD_TAG'''
+        //sh '''docker push $DOCKER_BUILD_TAG'''
       }
     }
 
