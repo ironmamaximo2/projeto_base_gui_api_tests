@@ -48,11 +48,13 @@ pipeline {
       }
     }
 
-    //stage('Upload') {
-     // steps {
-        //sh '''docker push $DOCKER_BUILD_TAG'''
-     // }
-    //}
+    stage('Upload') {
+      steps {
+        sh """
+        docker push $DOCKER_BUILD_TAG
+        """
+      }
+    }
 
         
     stage('Version') {
