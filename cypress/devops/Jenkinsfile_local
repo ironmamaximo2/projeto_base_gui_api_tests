@@ -16,7 +16,7 @@ pipeline {
         timeout(time: 80, unit: 'MINUTES')
     }
 
-    stages {
+  stages {
 
    stage('Get env') {
       steps {
@@ -62,14 +62,13 @@ pipeline {
     }
 
         
-    stages {
-        stage('Version') {
+    stage('Version') {
             steps {
                 sh 'node --version'
             }
         }
        
-        stage('Example') {
+    stage('Example') {
             steps {
                 sh 'npm config ls'
                 sh 'npm run test_all'
