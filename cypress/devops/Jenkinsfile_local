@@ -1,6 +1,7 @@
 pipeline {
  //agent { dockerfile true}
-   agent any
+   agent { any {reuseNode true} }
+   //{ node { label 'swarm-ci' } }
 
     environment {
         PROJECT_NAME="projeto_base_gui_api_tests"
