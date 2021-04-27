@@ -29,7 +29,7 @@ describe('GUI-Edit project', () => {
                 //win.onerror = null;
             }
         })
-        cy.criar_projeto(nome + num);
+        cy.criar_projeto(nome+'-'+num);
         cy.val_men_suc_criacao_projeto();
 
 
@@ -45,7 +45,7 @@ describe('GUI-Edit project', () => {
     it('sucess', () => {
 
 
-        cy.editar_projeto(nome + num, timeout);
+        cy.editar_projeto(nome+'-'+num, timeout);
         cy.val_mens_suc_editar_projeto();
 
 
@@ -79,7 +79,7 @@ describe('GUI-Edit project errors', () => {
                 win.onerror = null;
             }
         })
-        cy.criar_projeto(nome + num);
+        cy.criar_projeto(nome+'-'+num);
         cy.val_men_suc_criacao_projeto();
 
     })
@@ -94,7 +94,7 @@ describe('GUI-Edit project errors', () => {
     it('invalid timeout', () => {
 
 
-        cy.editar_projeto_timeout(nome + num, timeoutInv);
+        cy.editar_projeto_timeout(nome+'-'+num, timeoutInv);
         cy.val_mensagem_timeout_inval();
 
 

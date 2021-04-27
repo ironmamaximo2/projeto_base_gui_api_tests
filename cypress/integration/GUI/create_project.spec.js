@@ -63,7 +63,7 @@ describe('GUI-Create project errors', () => {
             }
 
         })
-        cy.criar_projeto(nome);
+        cy.criar_projeto(nome+'-'+num);
         cy.val_men_suc_criacao_projeto();
         cy.get('a[href="/"]').eq(0).click({ force: true });
 
@@ -75,7 +75,7 @@ describe('GUI-Create project errors', () => {
 
     it('already registered', () => {
 
-        cy.criar_projeto(nome);
+        cy.criar_projeto(nome+'-'+num);
 
         cy.val_men_erro_criacao_projeto();
 

@@ -16,7 +16,7 @@ describe('GUI-delete project', () => {
                 // win.onerror = null;
             }
         })
-        cy.criar_projeto(nome + num);
+        cy.criar_projeto(nome+'-'+num);
         cy.val_men_suc_criacao_projeto();
     })
 
@@ -25,7 +25,7 @@ describe('GUI-delete project', () => {
     })
 
     it('sucess', () => {
-        cy.excluir_projeto(nome + num);
+        cy.excluir_projeto(nome+'-'+num);
 
         cy.val_exclusao_projeto();
 
