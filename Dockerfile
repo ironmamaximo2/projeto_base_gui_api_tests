@@ -30,7 +30,7 @@ RUN npm config -g set user $(whoami)
 # uid=0(root) gid=0(root) groups=0(root)
 # which means the current user is root
 RUN id
-RUN apt-get install libgtk2.0-0 libgtk-3-0 libgbm-dev libnotify-dev libgconf-2-4 libnss3 libxss1 libasound2 libxtst6 xauth xvfb
+#RUN apt-get install libgtk2.0-0 libgtk-3-0 libgbm-dev libnotify-dev libgconf-2-4 libnss3 libxss1 libasound2 libxtst6 xauth xvfb
 
 # point Cypress at the /root/cache no matter what user account is used
 # see https://on.cypress.io/caching
