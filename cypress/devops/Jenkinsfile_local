@@ -8,7 +8,7 @@ pipeline {
         //CYPRESS_RUN_BINARY="~/Downloads/Cypress/Cypress cypress run"
         DOCKER_USER_PASS = credentials('DOCKER_USER_PASS')
         DOCKER_REPOSITORY = credentials('DOCKER_REPOSITORY')
-        DOCKER_USER_LOGIN = credentials('DOCKER_USER_LOGIN')
+        //DOCKER_USER_LOGIN = credentials('DOCKER_USER_LOGIN')
     }
 
     
