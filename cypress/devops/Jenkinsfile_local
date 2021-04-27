@@ -1,7 +1,7 @@
 
 pipeline {
-    agent { dockerfile {true} args '-u root:root'}
-     //agent { node { label 'linux && node14' } args '-u root:root'}
+    //agent { dockerfile {true} args '-u root:root'}
+    agent { node { label 'linux && node14' } args '-u root:root'}
     environment {
         CI = 'true' 
     }
