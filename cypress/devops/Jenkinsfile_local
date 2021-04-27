@@ -50,7 +50,7 @@ pipeline {
          """     
       }
     }
-   /* stage('Run tests in parallel') {
+    stage('Run tests in parallel') {
       steps {
       parallel(
       a: {
@@ -68,7 +68,7 @@ pipeline {
          """    
       }
       )
-    } */
+    }
   }
 }
 
