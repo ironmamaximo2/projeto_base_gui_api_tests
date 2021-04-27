@@ -53,7 +53,7 @@ pipeline {
     stage('Upload') {
       steps {
         sh """
-        docker login - u $DOCKER_USER_LOGIN -p $DOCKER_USER_PASS docker.io
+        docker login - u $DOCKER_USER_LOGIN -p $DOCKER_USER_PASS https://registry.hub.docker.com
         docker push $DOCKER_BUILD_TAG
         """
       }
