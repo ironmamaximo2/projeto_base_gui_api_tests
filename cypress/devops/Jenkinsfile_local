@@ -33,7 +33,6 @@ pipeline {
         )
       }
     }
-
     stage('Get cache') {
       steps {
         sh '''
@@ -41,7 +40,6 @@ pipeline {
         '''
       }
     }
-
     stage('Build') {
       steps {
         sh """
@@ -49,29 +47,16 @@ pipeline {
         """
       }
     }
-
-    stage('Push image') {
+    stage('Test run') {
        steps {
-       parallel(
-      a: {
+       
          sh """
            docker run --rm --network host \
            -i $DOCKER_BUILD_TAG \
            npm run test_gui_all
          """     
-      },
-      b: {
-         sh """
-           docker run --rm --network host \
-           -i $DOCKER_BUILD_TAG \
-           npm run test_api_all
-         """     
       }
-    )
     }
-      
-    }
-       
   }
 }
 
