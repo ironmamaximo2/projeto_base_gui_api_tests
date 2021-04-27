@@ -56,7 +56,6 @@ pipeline {
        app.push("latest")        
               }    
            }
-        }
 
     stage('Upload') {
       steps {
