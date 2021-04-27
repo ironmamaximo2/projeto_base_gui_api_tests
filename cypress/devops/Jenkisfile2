@@ -1,9 +1,10 @@
 pipeline {
   agent {
     // this image provides everything needed to run Cypress
-    any {
+    dockerfile {
+      filename 'Dockerfile'
       image 'cypress/base:12.16.1'
-       args '-p 3000:3000' 
+      args '-p 3000:3000' 
     }
   }
 
