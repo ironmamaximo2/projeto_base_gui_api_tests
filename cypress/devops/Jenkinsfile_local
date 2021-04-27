@@ -28,6 +28,7 @@ pipeline {
             script {
               env.PREVIOUS = env.BUILD_NUMBER - 1
               env.DOCKER_BUILD_TAG = "$PROJECT_NAME"
+              env.DOCKER_BUILD_TAG2 = "$PROJECT_NAME"+2
             }
           },
         )
@@ -44,6 +45,11 @@ pipeline {
       steps {
         sh """
           docker build -t $DOCKER_BUILD_TAG . -f Dockerfile
+        """
+      }
+       steps {
+        sh """
+          docker build -t $DOCKER_BUILD_TAG2 . -f Dockerfile
         """
       }
     }
@@ -70,7 +76,7 @@ pipeline {
       b: {
        sh """
            docker run --rm --network host \
-           -i $DOCKER_BUILD_TAG \
+           -i $DOCKER_BUILD_TAG2 \
            npm run test_api_all
          """    
       }
