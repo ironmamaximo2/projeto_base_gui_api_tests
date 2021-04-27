@@ -11,29 +11,12 @@ pipeline {
                 sh 'node --version'
             }
         }
-        stage ('Copiar')  {
-            steps {
-            sh 'WORKDIR /home/projeto_base_gui_api_tests/'
-            sh 'COPY . /home/projeto_base_gui_api_tests/'
-                }
-
-            }
+       
         stage('Example') {
             steps {
                 sh 'npm config ls'
             }
         }
-        stage('Example2') {
-            steps {
-              sh 'npm i'
-            }
-        }
-        stage('Test') {
-            steps {
-               sh 'npm run test_api_all'
-               sh 'echo test'
-
-            }
-        }
+       
     }
 }
