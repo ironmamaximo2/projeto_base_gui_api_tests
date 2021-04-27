@@ -1,5 +1,5 @@
 pipeline {
- agent { node { label 'linux && node14' }}
+ agent { dockerfile true}
 
     environment {
         PROJECT_NAME="projeto_base_gui_api_tests"
