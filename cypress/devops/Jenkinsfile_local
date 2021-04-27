@@ -7,9 +7,11 @@ pipeline {
         //SLACK_CHANNEL = "alertas-projeto_base_gui_api_tests"
         CYPRESS_CACHE_FOLDER ="/home/jenkins/.cache/Cypress"
         //CYPRESS_RUN_BINARY="~/Downloads/Cypress/Cypress cypress run"
-        //DOCKER_USER_PASS = credentials('DOCKER_USER_PASS')
+        DOCKER_USER_PASS = "Teste@123"
+        //
+
         //DOCKER_REPOSITORY = credentials('DOCKER_REPOSITORY')
-        //DOCKER_USER_LOGIN = credentials('DOCKER_USER_LOGIN')
+        DOCKER_USER_LOGIN = "hosmarcio"
     }
 
     
@@ -51,6 +53,7 @@ pipeline {
     stage('Upload') {
       steps {
         sh """
+        docker login - u $DOCKER_USER_LOGIN -p $DOCKER_USER_PASS docker.io
         docker push $DOCKER_BUILD_TAG
         """
       }
