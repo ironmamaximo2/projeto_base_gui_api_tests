@@ -1,14 +1,14 @@
 pipeline {
     agent {
-        any {
-            image 'cypress/base:12.16.1' 
+        dockerfile {
+            image 'cypress/browsers:node12.18.3-chrome87-ff82' 
             args '-p 3000:3000' 
         }
     }
     stages {
         stage('Install Dependencies') { 
             steps {
-                sh 'npm ci'
+                sh 'node -v'
               
             }
         }
