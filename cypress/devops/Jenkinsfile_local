@@ -1,7 +1,10 @@
 pipeline {
  //agent { dockerfile true}
- agent { node { label 'linux' }}
-
+ agent any
+    environment {
+        IMAGE='liatrio/jenkins-alpine'
+        TAG='latest'
+    }
     environment {
         PROJECT_NAME="projeto_base_gui_api_tests"
         //SLACK_CHANNEL = "alertas-projeto_base_gui_api_tests"
