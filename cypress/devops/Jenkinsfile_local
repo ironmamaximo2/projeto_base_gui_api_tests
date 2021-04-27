@@ -1,10 +1,66 @@
 
-pipeline {
-    //agent { dockerfile {true} args '-u root:root'}
-    agent { node { label 'linux && node14' } args '-u root:root'}
+ agent { node { label 'linux && node14' }}
+
     environment {
-        CI = 'true' 
+        PROJECT_NAME="projeto_base_gui_api_tests"
+        //SLACK_CHANNEL = "alertas-projeto_base_gui_api_tests"
+        CYPRESS_CACHE_FOLDER ="/home/jenkins/.cache/Cypress"
+        //CYPRESS_RUN_BINARY="~/Downloads/Cypress/Cypress cypress run"
+        DOCKER_USER_PASS = credentials('DOCKER_USER_PASS')
+        DOCKER_REPOSITORY = credentials('DOCKER_REPOSITORY')
+        DOCKER_USER_LOGIN = credentials('DOCKER_USER_LOGIN')
     }
+
+    
+    options {
+        timeout(time: 80, unit: 'MINUTES')
+    }
+
+    stages {
+
+   stage('Get env') {
+      steps {
+        parallel(
+          'Set environment': {
+            script {
+              env.PREVIOUS = env.BUILD_NUMBER - 1
+              env.DOCKER_BUILD_TAG = "$DOCKER_REPOSITORY/$PROJECT_NAME"
+            }
+          },
+
+          'Login at docker': {
+            sh '''
+              set +x
+              docker login $DOCKER_REPOSITORY -u $DOCKER_USER_LOGIN -p $DOCKER_USER_PASS
+              set -x
+            '''
+          },
+        )
+      }
+    }
+
+    stage('Get cache') {
+      steps {
+        sh '''
+          docker pull $DOCKER_PREVIUS_BUILD_TAG || echo "Docker pull fail"
+        '''
+      }
+    }
+
+    stage('Build') {
+      steps {
+        sh """
+          docker build -t $DOCKER_BUILD_TAG . -f Dockerfile
+        """
+      }
+    }
+
+    stage('Upload') {
+      steps {
+        sh '''docker push $DOCKER_BUILD_TAG'''
+      }
+    }
+
         
     stages {
         stage('Version') {
