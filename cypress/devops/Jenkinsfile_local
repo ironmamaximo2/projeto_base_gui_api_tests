@@ -45,10 +45,6 @@ pipeline {
       steps {
         sh """
           docker build -t $DOCKER_BUILD_TAG . -f Dockerfile
-        """
-      }
-       steps {
-        sh """
           docker build -t $DOCKER_BUILD_TAG2 . -f Dockerfile
         """
       }
