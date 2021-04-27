@@ -53,14 +53,15 @@ pipeline {
     stage('Run tests in parallel') {
       steps {
       parallel(
-      a: {
+
+      a: agent any {
         sh """
            docker run --rm --network host \
            -i $DOCKER_BUILD_TAG \
            npm run test_gui_all
          """    
       },
-      b: {
+      b: agent node2 {
        sh """
            docker run --rm --network host \
            -i $DOCKER_BUILD_TAG \
