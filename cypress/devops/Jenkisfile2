@@ -1,7 +1,7 @@
 pipeline {
     agent {
-        any {
-            image 'cypress/browsers:node12.18.3-chrome87-ff82' 
+        dokerfile true{
+            //image 'cypress/browsers:node12.18.3-chrome87-ff82' 
             args '-p 3000:3000' 
         }
     }
