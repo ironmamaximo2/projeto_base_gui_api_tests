@@ -27,14 +27,6 @@ pipeline {
               env.DOCKER_BUILD_TAG = "$DOCKER_REPOSITORY/$PROJECT_NAME"
             }
           },
-
-          'Login at docker': {
-            sh '''
-              set +x
-              docker login $DOCKER_REPOSITORY -u $DOCKER_USER_LOGIN -p $DOCKER_USER_PASS
-              set -x
-            '''
-          },
         )
       }
     }
