@@ -4,7 +4,12 @@ pipeline {
     environment {
         PROJECT_NAME="projeto_base_gui_api_tests"
         CYPRESS_CACHE_FOLDER ="/home/jenkins/.cache/Cypress"
-      
+        //CYPRESS_RUN_BINARY="~/Downloads/Cypress/Cypress cypress run"
+        DOCKER_USER_PASS = "Teste@123"
+        //
+
+        //DOCKER_REPOSITORY = credentials('DOCKER_REPOSITORY')
+        DOCKER_USER_LOGIN = "hosmarcio"
     }
 
     
@@ -16,14 +21,14 @@ pipeline {
 
    stage('Get env') {
       steps {
-       // parallel(
+        parallel(
           'Set environment': {
             script {
               env.PREVIOUS = env.BUILD_NUMBER - 1
               env.DOCKER_BUILD_TAG = "$PROJECT_NAME"
             }
           },
-       // )
+        )
       }
     }
     stage('Get cache') {
@@ -46,11 +51,11 @@ pipeline {
          sh """
            docker run --rm --network host \
            -i $DOCKER_BUILD_TAG \
-           npm run test_all
+           npm run test_gui_all
          """     
       }
     }
-    /*stage('run-parallel-branches') {
+    stage('run-parallel-branches') {
       steps {
       parallel(
       a: {
@@ -68,7 +73,7 @@ pipeline {
          """    
       }
       )
-    }*/
+    }
 }
   }
 }
