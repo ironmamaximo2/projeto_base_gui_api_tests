@@ -7,7 +7,7 @@ pipeline {
         CYPRESS_CACHE_FOLDER ="/home/jenkins/.cache/Cypress"
         //CYPRESS_RUN_BINARY="~/Downloads/Cypress/Cypress cypress run"
         DOCKER_USER_PASS = credentials('DOCKER_USER_PASS')
-        DOCKER_REPOSITORY = credentials('DOCKER_REPOSITORY')
+        //DOCKER_REPOSITORY = credentials('DOCKER_REPOSITORY')
         //DOCKER_USER_LOGIN = credentials('DOCKER_USER_LOGIN')
     }
 
@@ -24,7 +24,7 @@ pipeline {
           'Set environment': {
             script {
               env.PREVIOUS = env.BUILD_NUMBER - 1
-              env.DOCKER_BUILD_TAG = "$DOCKER_REPOSITORY/$PROJECT_NAME"
+              env.DOCKER_BUILD_TAG = "$PROJECT_NAME"
             }
           },
         )
