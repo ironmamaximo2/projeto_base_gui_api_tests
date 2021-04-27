@@ -1,6 +1,6 @@
 pipeline {
- //agent { dockerfile true}
-   agent any
+ agent { dockerfile true}
+   //agent any
 
     environment {
         PROJECT_NAME="projeto_base_gui_api_tests"
@@ -51,36 +51,14 @@ pipeline {
     }
 
     stage('Push image') {
-       docker.withRegistry('https://registry.hub.docker.com', 'git') {            
-       app.push("${env.BUILD_NUMBER}")            
-       app.push("latest")        
-        }    
-      }
-
-    stage('Upload') {
       steps {
         sh """
-        //docker login - u $DOCKER_USER_LOGIN -p $DOCKER_USER_PASS 'https://registry.hub.docker.com'
-        docker push $DOCKER_BUILD_TAG
-        """
+           docker run --rm --network host \
+           -i $DOCKER_BUILD_TAG \
+           npm run test_all
+         """     
+        }    
       }
-    }
-
-   
-
-        
-    stage('Version') {
-            steps {
-                sh 'node --version'
-            }
-        }
-       
-    stage('Example') {
-            steps {
-                sh 'npm config ls'
-                sh 'npm run test_all'
-            }
-        }
        
     }
   }
