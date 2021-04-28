@@ -66,7 +66,6 @@ Cypress.Commands.add('excluir_projeto', { timeout: 7000 }, (nome) => {
   cy.get(sorryElementsN.opAutoRefresh).should('be.visible').click()
   cy.get(sorryElementsN.cpEnterProjectId).should('be.visible').type(nome)
   cy.get('a[href="/' + nome + '/runs"]').contains(nome).should('be.visible')
-  console.log(Cypress.log)
   if (Cypress.browser.name === 'chrome') {
     cy.get('.css-qmxd6z').should('be.visible')
   }
