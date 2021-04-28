@@ -66,7 +66,12 @@ Cypress.Commands.add('excluir_projeto', { timeout: 7000 }, (nome) => {
   cy.get(sorryElementsN.opAutoRefresh).should('be.visible').click()
   cy.get(sorryElementsN.cpEnterProjectId).should('be.visible').type(nome)
   cy.get('a[href="/' + nome + '/runs"]').contains(nome).should('be.visible')
-  cy.get('.css-qmxd6z').should('be.visible')
+  console.log(Cypress.log)
+  if (Cypress.browser.name === 'chrome') {
+    cy.get('.css-qmxd6z').should('be.visible')
+  }
+  else {
+  }
   cy.get(sorryElementsN.icDelete).eq(0).should('be.visible').click({ force: true })
   cy.get(sorryElementsN.btDelModal).eq(1).should('be.visible').click({ force: true })
 })
