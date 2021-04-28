@@ -40,7 +40,17 @@ pipeline {
         """
       }
     }
-    stage('Test run') {
+    stage('Tests run - API') {
+       steps {
+       
+         sh """
+           docker run --rm --network host \
+           -i $DOCKER_BUILD_TAG \
+           npm run test_api_all
+         """     
+      }
+    }
+    stage('Tests run - GUI') {
        steps {
        
          sh """
