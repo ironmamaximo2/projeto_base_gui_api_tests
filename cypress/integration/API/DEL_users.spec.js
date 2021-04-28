@@ -13,6 +13,7 @@ describe('API-delete users', () => {
             'max': 9000
         });
     let password = pass.toString();
+    let cod = pass.toString();
     let nome = faker.name.firstName();
 
 
@@ -20,7 +21,7 @@ describe('API-delete users', () => {
 
     beforeEach(() => {
 
-        cy.create_users_api(Cypress.env('url_api'), nome, email, password, administrador)
+        cy.create_users_api(Cypress.env('url_api'), nome+'-'+cod, email, password, administrador)
 
             .then((resp) => {
                 return new Promise(resolve => {

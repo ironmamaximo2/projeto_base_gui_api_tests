@@ -24,7 +24,7 @@ describe('API-create product', () => {
 
     beforeEach(() => {
 
-        cy.create_users_api(Cypress.env('url_api'), nome, email, password, administrador)
+        cy.create_users_api(Cypress.env('url_api'), nome+'-'+quant, email, password, administrador)
 
             .then((resp) => {
 

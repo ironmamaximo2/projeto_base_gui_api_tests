@@ -9,10 +9,16 @@ describe('API-list products', () => {
     let email = faker.internet.email();
     let administrador = "true";
     let password = "123456";
+    let pass =
+        faker.random.number({
+            'min': 1,
+            'max': 9000
+        });
+    let cod = pass.toString();
 
     beforeEach(() => {
 
-        cy.create_users_api(Cypress.env('url_api'), nome, email, password, administrador)
+        cy.create_users_api(Cypress.env('url_api'), nome+'-'+cod, email, password, administrador)
 
             .then((resp) => {
 

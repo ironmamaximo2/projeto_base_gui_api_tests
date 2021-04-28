@@ -32,7 +32,7 @@ describe('GUI-Create project', () => {
 
         it('sucess - ' + viewPortDic[i][0], () => {
 
-            cy.criar_projeto_viewPort(nome, viewPortDic, i, num);
+            cy.criar_projeto_viewPort(nome+'-'+num, viewPortDic, i, num);
 
             cy.val_men_suc_criacao_projeto();
 

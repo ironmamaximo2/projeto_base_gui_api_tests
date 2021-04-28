@@ -12,12 +12,13 @@ describe('API-create users api', () => {
             'max': 9000
         });
     let password = pass.toString()
+    let cod = pass.toString();
     afterEach(() => {
         cy.screenshot({ capture: 'fullPage'})
     })
 
     it('sucess', () => {
-        cy.create_users_api(Cypress.env('url_api'), nome, email, password, administrador)
+        cy.create_users_api(Cypress.env('url_api'), nome+'-'+cod, email, password, administrador)
 
             .then((resp) => {
                 expect(resp).property('status').to.equal(201)
@@ -47,10 +48,11 @@ describe('API-create users api - errors', () => {
             'max': 9000
         });
     let password = pass.toString()
+    let cod = pass.toString();
 
     beforeEach(() => {
 
-        cy.create_users_api(Cypress.env('url_api'), nome, email, password, administrador)
+        cy.create_users_api(Cypress.env('url_api'), nome+'-'+cod, email, password, administrador)
 
             .then((resp) => {
                 expect(resp).property('status').to.equal(201)
@@ -70,7 +72,7 @@ describe('API-create users api - errors', () => {
 
 
     it('user already registered', () => {
-        cy.create_users_api(Cypress.env('url_api'), nome, email, password, administrador)
+        cy.create_users_api(Cypress.env('url_api'), nome+'-'+cod, email, password, administrador)
 
             .then((resp) => {
                 expect(resp).property('status').to.equal(400)

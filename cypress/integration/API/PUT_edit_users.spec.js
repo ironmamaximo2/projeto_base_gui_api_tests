@@ -20,7 +20,7 @@ describe('API-edit users', () => {
 
     beforeEach(() => {
 
-        cy.create_users_api(Cypress.env('url_api'), nome, email, password, administrador)
+        cy.create_users_api(Cypress.env('url_api'), nome+'-'+password, email, password, administrador)
 
             .then((resp) => {
                 return new Promise(resolve => {
@@ -46,7 +46,7 @@ describe('API-edit users', () => {
 
     it('sucess', () => {
 
-        cy.edit_users_api(Cypress.env('url_api'), id, nome2, email, password, administrador).then((resp) => {
+        cy.edit_users_api(Cypress.env('url_api'), id, nome2+'-'+password, email, password, administrador).then((resp) => {
 
             expect(resp).property('status').to.equal(200)
             expect(resp.body).to.have.property('message');
