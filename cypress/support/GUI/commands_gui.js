@@ -70,6 +70,7 @@ Cypress.Commands.add('excluir_projeto', { timeout: 7000 }, (nome) => {
     cy.get('.css-qmxd6z').should('be.visible')
   }
   else {
+    cy.wait(200)
   }
   cy.get(sorryElementsN.icDelete).eq(0).should('be.visible').click({ force: true })
   cy.get(sorryElementsN.btDelModal).eq(1).should('be.visible').click({ force: true })
