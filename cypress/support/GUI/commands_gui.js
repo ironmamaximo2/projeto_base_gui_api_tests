@@ -3,10 +3,10 @@ const sorryElements = require('../page_elements/sorry_page_elements')
 const sorryElementsN = new sorryElements()
 
 
-Cypress.Commands.add('criar_projeto_viewPort', { timeout: 7000 }, (nome, viewPortDic, i, num) => {
+Cypress.Commands.add('criar_projeto_viewPort', { timeout: 7000 }, (nome, viewPortDic, i) => {
   cy.viewport(viewPortDic[i][1], viewPortDic[i][2])
   cy.get(sorryElementsN.btNewProject).should('be.visible').click()
-  cy.get(sorryElementsN.cpProjectId).should('be.visible').type(nome + "-" + viewPortDic[i][0] + "-" + num)
+  cy.get(sorryElementsN.cpProjectId).should('be.visible').type(nome + "-" + viewPortDic[i][0])
   cy.get(sorryElementsN.btCreateProjectSave).should('be.visible').click()
 
 })

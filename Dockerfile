@@ -66,9 +66,9 @@ RUN chmod 755 /root
 # otherwise the base image might have old versions
 RUN npm i -g yarn@latest npm@latest
 
-# should print Cypress version
-# plus Electron and bundled Node versions
 RUN sed -i -e 's|api_url:.*$|api_url: "https://sorry-cypress-demo-director.herokuapp.com/"|g' /*/.cache/Cypress/*/Cypress/resources/app/packages/server/config/app.yml
+#Resultados no Sorry Cypress Local
+#RUN sed -i -e 's|api_url:.*$|api_url: "http://127.0.0.1:1234"|g' /*/.cache/Cypress/*/Cypress/resources/app/packages/server/config/app.yml
 RUN cypress version
 RUN echo  " node version:    $(node -v) \n" \
   "npm version:     $(npm -v) \n" \
