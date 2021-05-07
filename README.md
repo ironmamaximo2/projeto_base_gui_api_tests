@@ -1,5 +1,7 @@
 # projeto_base_gui_api_tests
 
+[![Badge ServeRest](https://img.shields.io/badge/API-ServeRest-green)](https://github.com/ServeRest/ServeRest/)
+
 #Pré-condições
 -Node instalado
 -npm instalado
